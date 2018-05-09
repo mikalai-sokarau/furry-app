@@ -1,23 +1,30 @@
 import angular from 'angular';
+// import uiRouter from '@uirouter/angularjs'
+
 import styles from './styles.css';
+import main from './directives/main/main.directive';
+import resultsContainer from './directives/resultsContainer/resultsContainer.directive';
+import searchBar from './directives/searchBar/searchBar.directive'
 
-import searchBarController from './directives/searchBar/searchBar.controller';
-import resultsContainerController from './directives/resultsContainer/resultsContainer.controller';
-
-const searchBarTemplate = require('directives/searchBar/searchBar.template.html');
-const resultsContainerTemplate = require('./directives/resultsContainer/resultsContainer.template.html');
-
-
-angular.module('furry-app', [])
-  .directive('searchBar', function() {
-    return {
-      templateUrl: searchBarTemplate
+angular.module('furry-app')
+  .config(function($stateProvider) {
+    const helloState = {
+      name: 'hello',
+      url: '/hello',
+      template: '<h3>hello</h3>'
     }
-  })
-  .controller('SearchBarCtrl', searchBarController)
-  .directive('resultsContainer', function() {
-    return {
-      templateUrl: resultsContainerTemplate
+    const searchState = {
+      name: 'search',
+      url: '/search',
+      template: '<h3>search</h3>'
     }
-  })
-  .controller('ResultsContainerCtrl', resultsContainerController)
+    const userState = {
+      name: 'user',
+      url: '/user', 
+      template: '<h3>user</h3>'
+    }
+
+    $stateProvider.state(helloState);
+    $stateProvider.state(searchState);
+    $stateProvider.state(userState);
+  });

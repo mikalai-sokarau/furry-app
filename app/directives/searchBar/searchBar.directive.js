@@ -1,9 +1,12 @@
 import angular from 'angular';
 
-const searchBarTemplate = require('./searchBar.template.html');
+import searchBarController from './searchBar.controller';
+import searchBarTemplate from './searchBar.template.html';
 
-app.directive('searchBar', function () {
-  return {
-    template: "searchBarTemplate"
-  }
-})
+angular.module('furry-app')
+  .directive('searchBar', function () {
+    return {
+      templateUrl: searchBarTemplate
+    }
+  })
+  .controller('SearchBarCtrl', searchBarController)
