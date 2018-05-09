@@ -1,0 +1,33 @@
+body {
+  min-width: 600px;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  height: 50px;
+}
+
+nav {
+  display: flex;
+  justify-content: space-around;
+  background-color: lightgray;
+  list-style-type: none;
+  height: 100%;
+}
+
+.search {
+  display: flex;
+  align-items: center;
+}
+
+.icon-container {
+  width: 30px;
+  height: auto;
+  margin-right: 20px;
+}
+
+.icon-container img {
+  width: 100%;
+  height: auto;
+}
