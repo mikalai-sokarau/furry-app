@@ -1,12 +1,12 @@
-<header ng-controller="SearchBarCtrl as ctrl">
+<header>
   <nav>
       <div class="search">
           <div class="icon-container">
-              <a href=#>
+              <a href='/'>
                   <img src="../../images/icon.png">
               </a>
           </div>
-          <form ng-submit="ctrl.getData()" class="search-form">
+          <form ng-submit="SearchBarCtrl.getData()" class="search-form">
               <input type="text" ng-model="ctrl.searchText" />
           </form>
       </div>

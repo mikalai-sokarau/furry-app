@@ -1,0 +1,10 @@
+<div class="search-results-content-wrapper">
+    <aside class="search-results-side-bar">
+        <ul>
+            <li ng-repeat="state in SearchResultsViewCtrl.states" ui-sref="{{ state.name }}" ui-sref-active="active">
+                {{ state.name }}
+            </li>
+        </ul>
+    </aside>
+    <results-list class="search-results-results-list"></results-list>
+</div>
