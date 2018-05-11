@@ -9,6 +9,7 @@ angular.module('furry-app', ['ui.router'])
         return {
             restrict: 'E',
             templateUrl: rootTemplate,
-            controller: rootCtrl
+            controller: rootCtrl,
+            controllerAs: 'RootCtrl'
         }
     });
