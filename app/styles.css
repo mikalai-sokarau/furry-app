@@ -50,15 +50,15 @@ header {
 .search-results-content-wrapper {
   display: flex;
   flex-direction: row;
+  height: 100%;
 }
 
-.search-results .content-wrapper > aside {
+.search-results-content-wrapper > .search-results-side-bar {
   height: 100%;
   width: 25%;
-  border-right: 1px solid black
 }
 
-.search-results .content-wrapper > section {
+.search-results-content-wrapper > .search-results-list {
   flex: 1;
 }
 

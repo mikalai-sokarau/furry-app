@@ -10,8 +10,8 @@ angular.module('furry-app')
             templateUrl: resultItemTemplate,
             controller: resultItemCtrl,
             controllerAs: 'resultItemCtrl',
-            require: "^resultsList",
-            link: function (scope, element, attrs) {}
+            require: "^searchResultsList",
+            // link: function (scope, element, attrs) {}
         }
     });
     

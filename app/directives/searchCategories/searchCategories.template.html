@@ -1,0 +1,7 @@
+<aside>
+  <ul>
+      <li ng-repeat="state in SearchCategoriesCtrl.states" ng-click='SearchCategoriesCtrl.getData(state.name);'  ui-sref="{{ state.name }}" ui-sref-active="active">
+          {{ state.name }}
+      </li>
+  </ul>
+</aside>

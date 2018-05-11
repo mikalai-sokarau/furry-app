@@ -9,6 +9,7 @@ import mainView from './directives/mainView/mainView.directive';
 import searchResultsList from './directives/searchResultsList/searchResultsList.directive';
 import resultItem from './directives/resultItem/resultItem.directive';
 import userView from './directives/userView/userView.directive';
+import searchCategories from './directives/searchCategories/searchCategories.directive';
 
 import gitHubMessager from './services/gitHubMessager/gitHubMessager.service';
 

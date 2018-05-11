@@ -1,10 +1,11 @@
 <div class="search-results-content-wrapper">
-    <aside class="search-results-side-bar">
+    <search-categories class="search-results-side-bar"></search-categories>
+    <!-- <aside class="search-results-side-bar">
         <ul>
             <li ng-repeat="state in MainViewCtrl.states" ng-click='MainViewCtrl.getData(state.name);'  ui-sref="{{ state.name }}" ui-sref-active="active">
                 {{ state.name }}
             </li>
         </ul>
-    </aside>
-    <results-list class="search-results-list"></results-list>
+    </aside> -->
+    <search-results-list class="search-results-list"></search-results-list>
 </div>
