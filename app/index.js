@@ -14,7 +14,6 @@ import gitHubMessager from './services/gitHubMessager/gitHubMessager.service';
 
 angular.module('furry-app')
   .config(function($stateProvider, $urlRouterProvider) {
-    // console.log($transitions);
     STATES.forEach(state => $stateProvider.state(state));
     $urlRouterProvider.otherwise('/');
   });
