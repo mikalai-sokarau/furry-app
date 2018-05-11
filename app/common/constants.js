@@ -3,17 +3,17 @@ const STATES = [
     {
         name: 'repositories',
         url: '/search/repositories?:text&:page',
-        component: 'searchResultsView'
+        component: 'mainView'
     },
     {
         name: 'issues',
         url: '/search/issues',
-        component: 'searchResultsView'
+        component: 'mainView'
     },
     {
         name: 'users',
         url: '/search/users',
-        component: 'searchResultsView'
+        component: 'mainView'
     },
     {
         name: 'hello',
@@ -23,7 +23,7 @@ const STATES = [
     {
         name: 'search',
         url: '/search',
-        component: 'searchResultsView'
+        component: 'mainView'
     },
     {
         name: 'user',
