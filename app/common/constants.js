@@ -17,7 +17,7 @@ const STATES = [
     },
     {
         name: 'hello',
-        url: '',
+        url: '/',
         template: '<p style="text-align: center;">Welcome page<p>'
     },
     {

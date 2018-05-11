@@ -25,14 +25,9 @@ footer {
 
 header {
   height: 50px;
-}
-
-nav {
   display: flex;
-  justify-content: space-around;
   background-color: lightgray;
-  list-style-type: none;
-  height: 100%;
+  justify-content: center;
 }
 
 .search {
