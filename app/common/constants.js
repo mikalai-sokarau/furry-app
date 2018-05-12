@@ -7,12 +7,12 @@ const STATES = [
     },
     {
         name: 'issues',
-        url: '/search/issues',
+        url: '/search/issues?:text&:page',
         component: 'mainView'
     },
     {
         name: 'users',
-        url: '/search/users',
+        url: '/search/users?:text&:page',
         component: 'mainView'
     },
     {

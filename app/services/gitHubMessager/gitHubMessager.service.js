@@ -7,7 +7,7 @@ export default function ($state, $location, $stateParams) {
 
   function extractParametersFromUrl() {
     return {
-      text: $stateParams.text, 
+      text: $stateParams.text,
       page: $stateParams.page
     }
   }
@@ -20,6 +20,7 @@ export default function ($state, $location, $stateParams) {
 
   function getUsers(params) {
     console.log('getUsers');
+    console.log(params);
     $state.go('users', params);
     search.forUsers({ q: params.text }, gitHubCallback);
   }
@@ -35,26 +36,30 @@ export default function ($state, $location, $stateParams) {
     // scope.$emit("GITHUB_DATA_LOADED", data);
   }
 
-  return {
-    getData: () => {
-      const params = extractParametersFromUrl();
+  function getUrl() {
+    const splittedUrl = $location.path().split('/search/');
+    return splittedUrl.length <= 1 ? 'repositories' : splittedUrl[splittedUrl.length - 1];
+  }
 
-      // switch () {
-      //   case "repositories":
-      //     getRepositories(params);
-      //     break;
-      //   case "issues":
-      //     getIssues(params);
-      //     break;
-      //   case "users":
-      //     getUsers(params);
-      //     break;
-      // }
+  return {
+    getData: (category = getUrl()) => {
+      const params = extractParametersFromUrl();
+      // console.log(params);
+      switch (category) {
+        case 'repositories':
+          getRepositories(params);
+          break;
+        case 'issues':
+          getIssues(params);
+          break;
+        case 'users':
+          getUsers(params);
+          break;
+      }
     },
 
     getUrl: () => {
-      const splittedUrl = $location.path().split('/search/');
-      return splittedUrl.length <= 1 ? 'repositories' : splittedUrl[splittedUrl.length - 1];
+      return getUrl();
     }
   }
 };
