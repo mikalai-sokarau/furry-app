@@ -1,41 +1,60 @@
-import angular from "angular";
 import GitHub from "github-api";
 
 const GITHUB_TOKEN = "17f43dadb83200b2cc5db0e98f9340a25ec82402";
 
-export default function gitHubMessager($state, $location, $stateParams) {
+export default function ($state, $location, $stateParams) {
   const search = new GitHub({ GITHUB_TOKEN }).search();
-  
+
   function extractParametersFromUrl() {
-    console.log($stateParams.text);
-  }
-  
-  return {
-    getRepositories: (scope) => {
-      extractParametersFromUrl();
-      // console.log($stateParams)
-      // search.forRepositories({ q: text }, (err, data) => {
-      //   console.log(data);
-      //   scope.$emit("GITHUB_DATA_LOADED", data);
-      // });
-    },
-
-    getUsers: (scope) => {
-      $state.go('users');
-      search.forUsers({ q: text }, (err, data) => {
-        scope.$emit("GITHUB_DATA_LOADED", data);
-        console.log(data);
-      });
-    },
-
-    getIssues: (scope) => {
-      $state.go('issues');
-      search.forIssues({ q: text }, (err, data) => {
-        scope.$emit("GITHUB_DATA_LOADED", data);
-        console.log(data);
-      });
+    return {
+      text: $stateParams.text, 
+      page: $stateParams.page
     }
-  };
-}
+  }
 
-angular.module("furry-app").factory("gitHubMessager", gitHubMessager);
+  function getRepositories(params) {
+    console.log('getRepositories');
+    $state.go('repositories', params);
+    search.forRepositories({ q: params.text }, gitHubCallback);
+  };
+
+  function getUsers(params) {
+    console.log('getUsers');
+    $state.go('users', params);
+    search.forUsers({ q: params.text }, gitHubCallback);
+  }
+
+  function getIssues(params) {
+    console.log('getIssues');
+    $state.go('issues', params);
+    search.forIssues({ q: params.text }, gitHubCallback);
+  }
+
+  function gitHubCallback(err, data) {
+    console.log(data);
+    // scope.$emit("GITHUB_DATA_LOADED", data);
+  }
+
+  return {
+    getData: () => {
+      const params = extractParametersFromUrl();
+
+      // switch () {
+      //   case "repositories":
+      //     getRepositories(params);
+      //     break;
+      //   case "issues":
+      //     getIssues(params);
+      //     break;
+      //   case "users":
+      //     getUsers(params);
+      //     break;
+      // }
+    },
+
+    getUrl: () => {
+      const splittedUrl = $location.path().split('/search/');
+      return splittedUrl.length <= 1 ? 'repositories' : splittedUrl[splittedUrl.length - 1];
+    }
+  }
+};
