@@ -15,21 +15,20 @@ import searchCategories from './directives/searchCategories/searchCategories.dir
 import deliveredData from './services/deliveredData/deliveredData.service';
 import gitHubMessager from './services/gitHubMessager/gitHubMessager.service';
 
-const app = angular.module('furry-app', ['ui.router'])
+angular.module('furry-app', ['ui.router'])
   .config(function ($stateProvider, $urlRouterProvider) {
     STATES.forEach(state => $stateProvider.state(state));
     $urlRouterProvider.otherwise('/');
-  });
+  })
 
-app
   .directive('root', root)
   .directive('searchBar', searchBar)
   .directive('mainView', mainView)
   .directive('searchResultsList', searchResultsList)
   .directive('resultItem', resultItem)
   .directive('userView', userView)
-  .directive('searchCategories', searchCategories);
+  .directive('searchCategories', searchCategories)
 
-app
   .factory('gitHubMessager', gitHubMessager)
-  .factory('deliveredData', deliveredData);
+  
+  .service('deliveredData', deliveredData);
