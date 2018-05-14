@@ -14,20 +14,23 @@ export default function ($state, $location, $stateParams, $rootScope) {
   }
 
   function getRepositories(params) {
-    $state.go('repositories', params);
-    search.forRepositories({ q: params.text }, gitHubCallback);
+    const directiveName = 'repositories';
+    $state.go(directiveName, params);
+    search.forRepositories({ q: params.text }, gitHubCallback(directiveName));
     readyForRequest = false;
   };
 
   function getUsers(params) {
-    $state.go('users', params);
-    search.forUsers({ q: params.text }, gitHubCallback);
+    const directiveName = 'users';
+    $state.go(directiveName, params);
+    search.forUsers({ q: params.text }, gitHubCallback(directiveName));
     readyForRequest = false;
   }
 
   function getIssues(params) {
-    $state.go('issues', params);
-    search.forIssues({ q: params.text }, gitHubCallback);
+    const directiveName = 'issues';
+    $state.go(directiveName, params);
+    search.forIssues({ q: params.text }, gitHubCallback(directiveName));
     readyForRequest = false;
   }
 
@@ -35,16 +38,23 @@ export default function ($state, $location, $stateParams, $rootScope) {
 
   }
 
-  function gitHubCallback(err, data) {
-    if (!err) {
-      $rootScope.$emit("GITHUB_DATA_LOADED", data);
-      readyForRequest = true;
-    } else {
-      /*
-        error handling
-      */
-      console.log(err);
-    }
+  function gitHubCallback(directive) {
+      return function(err, data) {
+        if (!err) {
+            const requestData = {
+                name: directive,
+                data: data
+            };
+
+            $rootScope.$emit("GITHUB_DATA_LOADED", requestData);
+            readyForRequest = true;
+          } else {
+            /*
+              error handling
+            */
+            console.log(err);
+          }
+      }
   }
 
   function getCategoryFromUrl() {

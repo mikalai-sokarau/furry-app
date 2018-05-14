@@ -1,10 +1,13 @@
 export default function ($scope, deliveredData) {
     this.resultsList = [];
-    $scope.$on('GITHUB_DATA_RECEIVED', (err, data) => {
+    this.resultCategory = '';
+    
+    $scope.$on('GITHUB_DATA_RECEIVED', (err, dataObj) => {
+        this.resultCategory = dataObj.name;
         this.resultsList.length = 0;
-        this.resultsList.push(...data);
+        this.resultsList.push(...dataObj.data);
         $scope.$apply();
-        console.log(data);
+        console.log(dataObj);
     });
 }
 

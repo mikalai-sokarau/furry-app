@@ -1,3 +1,20 @@
 <section>
-    <result-item ng-repeat="item in SearchResultsListCtrl.resultsList" item-value="{{item}}"></result-item>
+    <div class="result-item" ng-switch="SearchResultsListCtrl.resultCategory" ng-repeat="item in SearchResultsListCtrl.resultsList">
+        <!-- {{item.owner.login}} -->
+        <div ng-switch-when="users">
+            <figure>
+                <img src="{{item.avatar_url}}" />
+                <figcaption><a href="#!/user">{{item.login}}</a></figcaption>
+            </figure>
+        </div>
+        <div ng-switch-when="repositories">
+            {{item.owner.login}}
+        </div>
+        <div ng-switch-when="issues">
+            {{item.title}}
+        </div>
+
+    </div>
+
+    <!-- <result-item ng-repeat="item in SearchResultsListCtrl.resultsList" item-value="{{item}}"></result-item> -->
 </section>

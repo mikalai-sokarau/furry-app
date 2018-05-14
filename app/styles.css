@@ -101,6 +101,22 @@ header {
   height: 100px;
   background-color: #eaffea;
   border-bottom: 3px solid rgb(255, 255, 255);
+  display: flex;
+  align-items: center;
+}
+
+.result-item figure {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  width: 50px;
+  height: auto;
+  align-items: center;
+}
+
+.result-item figure img {
+  width: 100%;
+  height: auto;
 }
 
 .result-item:hover {
