@@ -1,11 +1,6 @@
-import GitHub from "github-api";
+const GITHUB_TOKEN = "'token e4766e5962b7d5530bfc2319ababf227c6d3b8b0'";
 
-const GITHUB_TOKEN = "17f43dadb83200b2cc5db0e98f9340a25ec82402";
-const GITHUB_TOKEN_2 = "'token e4766e5962b7d5530bfc2319ababf227c6d3b8b0'";
-
-export default function($state, $location, $stateParams, $rootScope, $http) {
-    const gh = new GitHub({ GITHUB_TOKEN });
-
+export default function ($state, $location, $stateParams, $rootScope, $http) {
     function extractParametersFromUrl() {
         return {
             text: $stateParams.text,
@@ -15,149 +10,83 @@ export default function($state, $location, $stateParams, $rootScope, $http) {
 
     function getRepositories(params) {
         const directiveName = "repositories";
-        $http({
-            method: "GET",
-            url: `https://api.github.com/search/repositories?q=${
-                params.text
-            }&page=1&per_page=10`,
-            headers: {
-                Authorization: GITHUB_TOKEN_2
-            }
-        }).then(
-            res => {
+        sendRequest(`https://api.github.com/search/repositories?q=${params.text}&page=1&per_page=10`)
+            .then(res => {
                 const requestData = {
                     name: directiveName,
                     data: res.data.items
                 };
                 $rootScope.$emit("GITHUB_DATA_LOADED", requestData);
-            },
-            rej => {}
-        );
-
+            });
         $state.go(directiveName, params);
     }
 
     function getUsers(params) {
         const directiveName = "users";
-        $http({
-            method: "GET",
-            url: `https://api.github.com/search/users?q=${
-                params.text
-            }&page=1&per_page=10`,
-            headers: {
-                Authorization: GITHUB_TOKEN_2
-            }
-        }).then(
-            res => {
+        sendRequest(`https://api.github.com/search/users?q=${params.text}&page=1&per_page=10`)
+            .then(res => {
                 const requestData = {
                     name: directiveName,
                     data: res.data.items
                 };
                 $rootScope.$emit("GITHUB_DATA_LOADED", requestData);
-            },
-            rej => {}
-        );
+            });
         $state.go(directiveName, params);
     }
 
     function getIssues(params) {
         const directiveName = "issues";
-        $http({
-            method: "GET",
-            url: `https://api.github.com/search/issues?q=${
-                params.text
-            }&page=1&per_page=10`,
-            headers: {
-                Authorization: GITHUB_TOKEN_2
-            }
-        }).then(
-            res => {
+        sendRequest(`https://api.github.com/search/issues?q=${params.text}&page=1&per_page=10`)
+            .then(res => {
                 const requestData = {
                     name: directiveName,
                     data: res.data.items
                 };
                 $rootScope.$emit("GITHUB_DATA_LOADED", requestData);
-            },
-            rej => {}
-        );
+            });
         $state.go(directiveName, params);
     }
 
     function getUserInfo(params) {
         const directiveName = "user";
-        $http({
-            method: "GET",
-            url: `https://api.github.com/users/${params.text}`,
-            headers: {
-                Authorization: GITHUB_TOKEN_2
-            }
-        }).then(
-            res => {
-                $http({
-                    method: "GET",
-                    url: `https://api.github.com/users/${params.text}/repos`,
-                    headers: {
-                        Authorization: GITHUB_TOKEN_2
-                    }
-                }).then(
-                    res2 => {
-                        $http({
-                            method: "GET",
-                            url: `https://api.github.com/users/${
-                                params.text
-                            }/starred`,
-                            headers: {
-                                Authorization: GITHUB_TOKEN_2
-                            }
-                        }).then(
-                            res3 => {
-                                console.log(res3);
-                                const requestData = {
-                                    name: directiveName,
-                                    data: res.data,
-                                    repos: res2.data,
-                                    starred: res3.data
-                                };
-                                $rootScope.$emit(
-                                    "GITHUB_DATA_LOADED",
-                                    requestData
-                                );
-                            },
-                            rej3 => {}
+        sendRequest(`https://api.github.com/users/${params.text}`)
+            .then(res1 => sendRequest(`https://api.github.com/users/${params.text}/repos`)
+                .then(res2 => sendRequest(`https://api.github.com/users/${params.text}/starred`)
+                    .then(res3 => {
+                        const requestData = {
+                            name: directiveName,
+                            data: res1.data,
+                            repos: res2.data,
+                            starred: res3.data
+                        };
+                        $rootScope.$emit(
+                            "GITHUB_DATA_LOADED",
+                            requestData
                         );
-                    },
-                    rej2 => {}
-                );
-            },
-            rej => {}
-        );
+                    })
+                )
+            );
     }
 
-    function gitHubCallback(directiveName) {
-        return function(err, receivedData) {
-            if (!err) {
-                const requestData = {
-                    name: directiveName,
-                    data: receivedData
-                };
-                $rootScope.$emit("GITHUB_DATA_LOADED", requestData);
-            } else {
-                /*
-              error handling
-            */
+    function sendRequest(path) {
+        return $http({
+            method: "GET",
+            url: path,
+            headers: {
+                Authorization: GITHUB_TOKEN
             }
-        };
+        })
     }
 
     function getCategoryFromUrl() {
         let result = "";
         const path = $location.path();
+
         if (path.startsWith("/search")) {
             const splittedUrl = $location.path().split("/search/");
-            result =
-                splittedUrl.length <= 1
-                    ? "repositories"
-                    : splittedUrl[splittedUrl.length - 1];
+            result = splittedUrl.length <= 1
+                ? "repositories"
+                : splittedUrl[splittedUrl.length - 1];
         } else if (path.startsWith("/user")) {
             result = "user";
         } else {

@@ -99,6 +99,7 @@ header {
 
 .result-item {
   height: 100px;
+  padding-left: 20px;
   background-color: #eaffea;
   border-bottom: 3px solid rgb(255, 255, 255);
   display: flex;
@@ -113,4 +114,40 @@ header {
   display: flex;
   list-style-type: none;
   justify-content: space-evenly;
+}
+
+user-view section { 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.user-info {
+  margin-top: 15px;
+  width: 100%;
+  background-color: rgb(169, 183, 201);
+}
+
+.user-info figure {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.user-image-container {
+  width: 150px;
+  height: auto;
+}
+
+.user-image-container > img {
+  width: 100%;
+  height: auto;
+  /* border: 2px solid rgb(155, 255, 217); */
+  border-radius: 10%;
+}
+
+.user-repositories {
+  padding: 0;
+  margin: 0;
+  width: 100%
 }
