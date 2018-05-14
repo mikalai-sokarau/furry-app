@@ -105,20 +105,12 @@ header {
   align-items: center;
 }
 
-.result-item figure {
-  margin: 0;
-  padding: 0;
-  display: flex;
-  width: 50px;
-  height: auto;
-  align-items: center;
-}
-
-.result-item figure img {
-  width: 100%;
-  height: auto;
-}
-
 .result-item:hover {
   background-color: #d6f8d6;
+}
+
+.search-results-list ul {
+  display: flex;
+  list-style-type: none;
+  justify-content: space-evenly;
 }

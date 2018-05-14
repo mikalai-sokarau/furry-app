@@ -12,7 +12,7 @@ import resultItem from './directives/resultItem/resultItem.directive';
 import userView from './directives/userView/userView.directive';
 import searchCategories from './directives/searchCategories/searchCategories.directive';
 
-import deliveredData from './services/deliveredData/deliveredData.service';
+// import gitHubDataStorage from './services/gitHubDataStorage/gitHubDataStorage.service';
 import gitHubMessager from './services/gitHubMessager/gitHubMessager.service';
 
 angular.module('furry-app', ['ui.router'])
@@ -29,6 +29,5 @@ angular.module('furry-app', ['ui.router'])
   .directive('userView', userView)
   .directive('searchCategories', searchCategories)
 
-  .factory('gitHubMessager', gitHubMessager)
-  
-  .service('deliveredData', deliveredData);
+  .factory('gitHubMessager', gitHubMessager);
+  // .service('gitHubDataStorage', gitHubDataStorage);

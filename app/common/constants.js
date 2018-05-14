@@ -27,7 +27,7 @@ const STATES = [
     },
     {
         name: 'user',
-        url: '/user',
+        url: '/user?:text&:page',
         component: 'userView'
     }
 ];

@@ -1,11 +1,7 @@
 <section>
     <div class="result-item" ng-switch="SearchResultsListCtrl.resultCategory" ng-repeat="item in SearchResultsListCtrl.resultsList">
-        <!-- {{item.owner.login}} -->
         <div ng-switch-when="users">
-            <figure>
-                <img src="{{item.avatar_url}}" />
-                <figcaption><a href="#!/user">{{item.login}}</a></figcaption>
-            </figure>
+            <a href ng-click="SearchResultsListCtrl.showUserPage($event)">{{item.login}}</a>
         </div>
         <div ng-switch-when="repositories">
             {{item.owner.login}}
@@ -13,8 +9,9 @@
         <div ng-switch-when="issues">
             {{item.title}}
         </div>
-
     </div>
-
-    <!-- <result-item ng-repeat="item in SearchResultsListCtrl.resultsList" item-value="{{item}}"></result-item> -->
+    <ul>
+        <li ng-repeat="item in SearchResultsListCtrl.resultsList"><a href="" ng-click="SearchResultsListCtrl.changePage($index)">{{$index}}</a></li>
+    </ul>
+    <!-- {{SearchResultsListCtrl.paginationPage}} -->
 </section>

@@ -1,14 +1,16 @@
 <section>
     <div class="user-info">
         <figure>
-            photo
-            <figcaption>Name, Surname</figcaption>
+            <img src="{{UserViewController.avatarUrl}}" />
+            <figcaption>{{UserViewController.userName}}</figcaption>
         </figure>
     </div>
     <div class="user-achievements">
-        <span>followers: 999</span>
-        <span>following: 888</span>
-        <span>stars count: 100500</span>
+        <span>{{UserViewController.followers}}</span>
+        <span>{{UserViewController.following}}</span>
+        <span>stars count: {{UserViewController.starsCont}}</span>
     </div>
-    <div class="user-repositories"></div>
+    <ul class="user-repositories">
+        <li class="result-item" ng-repeat="repo in UserViewController.repositoriesList">{{repo.name}}</li>
+    </ul>
 </section>
