@@ -1,0 +1,39 @@
+.search-results-list {
+  flex: 1;
+  width: 80%;
+
+  ul {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    list-style-type: none;
+    justify-content: space-evenly;
+  }
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  padding: 5px;
+
+  input {
+    margin: 0 10px;
+  }
+  
+  li {
+    padding: 2px;
+  }
+}
+
+.result-item {
+  height: 100px;
+  padding-left: 20px;
+  background-color: #eaffea;
+  border-bottom: 3px solid rgb(255, 255, 255);
+  display: flex;
+  align-items: center;
+
+  &:hover {
+    background-color: #d6f8d6;
+  }
+}

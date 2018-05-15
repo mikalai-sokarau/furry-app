@@ -1,0 +1,39 @@
+.user-info {
+  margin-top: 15px;
+  width: 100%;
+  background-color: rgb(169, 183, 201);
+
+  figure {
+    display: flex;
+    flex-direction: column;
+    align-items: center;  
+  }
+}
+
+.user-image-container {
+  width: 150px;
+  height: auto;
+
+  img {
+    width: 100%;
+    height: auto;
+    border-radius: 10%;
+  }
+}
+
+.user-repositories {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+
+.loading-message {
+  text-align: center;
+  margin-top: 20px
+}
+
+user-view section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
