@@ -1,33 +1,61 @@
-const GITHUB_TOKEN = "'token e4766e5962b7d5530bfc2319ababf227c6d3b8b0'";
+const GITHUB_TOKEN = 'token 20176991854ac58f008621f3362a62face888d5e';
 
-export default function ($state, $location, $stateParams, $rootScope, $http) {
+export default function ($state, $stateParams, $rootScope, $http) {
     function extractParametersFromUrl() {
+        let currentPage = parseInt($stateParams.page);
+
+        if (currentPage < 1 || !Number.isInteger(currentPage)) {
+            currentPage = 1;
+        } else if (currentPage > 100) {
+            currentPage = 100;
+        }
+        
         return {
             text: $stateParams.text,
-            page: $stateParams.page
+            page: currentPage
         };
+    }
+
+    function fixParams(page, params) {
+        const lastPage = Math.floor(page / 10);
+        const maxPage = lastPage < 100 ? lastPage : 100;
+        let correctPage = params.page;
+
+        if (correctPage < 1) {
+            correctPage = 1;
+        } else if (correctPage > maxPage) {
+            correctPage = maxPage;
+        }
+
+        return Object.assign({}, params, {page: correctPage});
     }
 
     function getRepositories(params) {
         const directiveName = "repositories";
-        sendRequest(`https://api.github.com/search/repositories?q=${params.text}&page=1&per_page=10`)
+        let correctParams = params;
+
+        sendRequest(`https://api.github.com/search/repositories?q=${params.text}&page=${params.page}&per_page=10`)
             .then(res => {
                 const requestData = {
                     name: directiveName,
-                    data: res.data.items
+                    data: res.data.items,
+                    totalCount: res.data.total_count
                 };
+                correctParams = fixParams(requestData.totalCount, params);
                 $rootScope.$emit("GITHUB_DATA_LOADED", requestData);
             });
+            
         $state.go(directiveName, params);
     }
 
     function getUsers(params) {
         const directiveName = "users";
-        sendRequest(`https://api.github.com/search/users?q=${params.text}&page=1&per_page=10`)
+        sendRequest(`https://api.github.com/search/users?q=${params.text}&page=${params.page}&per_page=10`)
             .then(res => {
                 const requestData = {
                     name: directiveName,
-                    data: res.data.items
+                    data: res.data.items,
+                    totalCount: res.data.total_count
                 };
                 $rootScope.$emit("GITHUB_DATA_LOADED", requestData);
             });
@@ -36,11 +64,12 @@ export default function ($state, $location, $stateParams, $rootScope, $http) {
 
     function getIssues(params) {
         const directiveName = "issues";
-        sendRequest(`https://api.github.com/search/issues?q=${params.text}&page=1&per_page=10`)
+        sendRequest(`https://api.github.com/search/issues?q=${params.text}&page=${params.page}&per_page=10`)
             .then(res => {
                 const requestData = {
                     name: directiveName,
-                    data: res.data.items
+                    data: res.data.items,
+                    totalCount: res.data.total_count
                 };
                 $rootScope.$emit("GITHUB_DATA_LOADED", requestData);
             });
@@ -50,8 +79,8 @@ export default function ($state, $location, $stateParams, $rootScope, $http) {
     function getUserInfo(params) {
         const directiveName = "user";
         sendRequest(`https://api.github.com/users/${params.text}`)
-            .then(res1 => sendRequest(`https://api.github.com/users/${params.text}/repos`)
-                .then(res2 => sendRequest(`https://api.github.com/users/${params.text}/starred`)
+            .then(res1 => sendRequest(`https://api.github.com/users/${params.text}/starred`)
+                .then(res2 => sendRequest(`https://api.github.com/users/${params.text}/repos`)
                     .then(res3 => {
                         const requestData = {
                             name: directiveName,
@@ -70,33 +99,17 @@ export default function ($state, $location, $stateParams, $rootScope, $http) {
 
     function sendRequest(path) {
         return $http({
-            method: "GET",
+            method: 'GET',
             url: path,
             headers: {
-                Authorization: GITHUB_TOKEN
+                'Authorization': GITHUB_TOKEN
             }
         })
     }
 
-    function getCategoryFromUrl() {
-        let result = "";
-        const path = $location.path();
-
-        if (path.startsWith("/search")) {
-            const splittedUrl = $location.path().split("/search/");
-            result = splittedUrl.length <= 1
-                ? "repositories"
-                : splittedUrl[splittedUrl.length - 1];
-        } else if (path.startsWith("/user")) {
-            result = "user";
-        } else {
-            result = "hello";
-        }
-        return result;
-    }
-
-    function chooseRightCategory(category = getCategoryFromUrl()) {
+    function chooseRightCategory(category = $state.current.name) {
         const params = extractParametersFromUrl();
+
         if (params.text) {
             switch (category) {
                 case "repositories":

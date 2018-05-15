@@ -1,4 +1,3 @@
-const GITHUB_TOKEN = '17f43dadb83200b2cc5db0e98f9340a25ec82402';
 const STATES = [
     {
         name: 'repositories',
@@ -18,7 +17,7 @@ const STATES = [
     {
         name: 'hello',
         url: '/',
-        template: '<p style="text-align: center;">Welcome page<p>'
+        template: "<p style='text-align: center;'>App's welcome page<p>"
     },
     {
         name: 'search',
@@ -32,4 +31,4 @@ const STATES = [
     }
 ];
 
-export { GITHUB_TOKEN, STATES };
+export { STATES };

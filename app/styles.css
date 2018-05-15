@@ -1,4 +1,5 @@
-html, body {
+html,
+body {
   min-width: 600px;
   margin: 0;
   padding: 0;
@@ -73,7 +74,7 @@ header {
 }
 
 .search-results-list {
-  width: 80%
+  width: 80%;
 }
 
 .search-results-side-bar ul {
@@ -116,7 +117,7 @@ header {
   justify-content: space-evenly;
 }
 
-user-view section { 
+user-view section {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -149,5 +150,20 @@ user-view section {
 .user-repositories {
   padding: 0;
   margin: 0;
-  width: 100%
+  width: 100%;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  padding: 5px;
+}
+
+.pagination input {
+  margin: 0 10px;
+}
+
+.loading-message {
+  text-align: center;
+  margin-top: 20px
 }

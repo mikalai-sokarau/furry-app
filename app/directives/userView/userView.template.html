@@ -1,4 +1,4 @@
-<section>
+<section ng-show="UserViewController.userName">
     <div class="user-info">
         <figure>
             <div class="user-image-container">
@@ -16,3 +16,4 @@
         <li class="result-item" ng-repeat="repo in UserViewController.repositoriesList">{{repo.name}}</li>
     </ul>
 </section>
+<div class="loading-message" ng-show="!UserViewController.userName">Loading...</div>

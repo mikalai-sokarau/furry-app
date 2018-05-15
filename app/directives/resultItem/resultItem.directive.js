@@ -7,11 +7,5 @@ export default function () {
         templateUrl: resultItemTemplate,
         controller: resultItemCtrl,
         controllerAs: 'resultItemCtrl',
-        require: "^searchResultsList",
-        link: function (scope, element, attrs, ctrls) {
-            const elem = JSON.parse(attrs.itemValue);
-            console.log(elem.owner.login);
-            console.log(ctrls);
-        }
     }
 };

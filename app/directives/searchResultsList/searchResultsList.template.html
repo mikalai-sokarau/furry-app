@@ -1,4 +1,9 @@
 <section>
+    <div class="pagination" ng-show="SearchResultsListCtrl.totalResultsCount > 10">
+        <input type="button" ng-disabled="SearchResultsListCtrl.currentPage <= 1" ng-click="SearchResultsListCtrl.goBack()" value="back">
+        <span>Page {{SearchResultsListCtrl.currentPage}} of {{SearchResultsListCtrl.lastResultsPage}}</span>
+        <input type="button" ng-disabled="SearchResultsListCtrl.currentPage >= SearchResultsListCtrl.lastResultsPage" ng-click="SearchResultsListCtrl.goForward()" value="next">
+    </div>
     <div class="result-item" ng-switch="SearchResultsListCtrl.resultCategory" ng-repeat="item in SearchResultsListCtrl.resultsList">
         <div ng-switch-when="users">
             <a href ng-click="SearchResultsListCtrl.showUserPage($event)">{{item.login}}</a>
@@ -10,8 +15,5 @@
             {{item.title}}
         </div>
     </div>
-    <ul>
-        <li ng-repeat="item in SearchResultsListCtrl.resultsList"><a href="" ng-click="SearchResultsListCtrl.changePage($index)">{{$index}}</a></li>
-    </ul>
-    <!-- {{SearchResultsListCtrl.paginationPage}} -->
+
 </section>
