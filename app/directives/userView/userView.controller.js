@@ -6,6 +6,14 @@ export default function($scope) {
     this.starsCount = 0;
     this.repositoriesList = [];
 
+    this.pageYOffset = window.pageYOffset;
+
+    window.onscroll = function(event) {
+        if ((window.innerHeight + window.pageYOffset) >= document.body.offsetHeight) {
+            console.log("you're at the bottom of the page");
+        }
+    }
+
     $scope.$on("GITHUB_DATA_RECEIVED", (err, dataObj) => {
         this.userName = dataObj.data.login;
         this.avatarUrl = dataObj.data.avatar_url;
