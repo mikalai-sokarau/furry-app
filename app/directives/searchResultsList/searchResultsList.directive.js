@@ -1,10 +1,11 @@
 import searchResultsListCtrl from './searchResultsList.controller';
 import searchResultsListTemplate from './searchResultsList.template.html';
-import searchResultsListStyles from './searchResultsList.styles.scss';
+import './searchResultsList.styles.scss';
 
 export default function () {
     return {
         restrict: 'E',
+        scope: {},
         templateUrl: searchResultsListTemplate,
         controller: searchResultsListCtrl,
         controllerAs: 'SearchResultsListCtrl'

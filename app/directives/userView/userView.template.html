@@ -1,19 +1,23 @@
-<section ng-show="UserViewController.userName">
-    <div class="user-info">
-        <figure>
-            <div class="user-image-container">
-                <img src="{{UserViewController.avatarUrl}}" />
-            </div>
-            <figcaption>{{UserViewController.userName}}</figcaption>
-        </figure>
+<section>
+    <div class="user-content-wrapper"  ng-show="UserViewController.userName">
+            <div class="user-info">
+                    <figure>
+                        <div class="user-image-container">
+                            <img src="{{UserViewController.avatarUrl}}" />
+                        </div>
+                        <figcaption>{{UserViewController.userName}}</figcaption>
+                    </figure>
+                </div>
+                <div class="user-achievements">
+                    <span>followers: {{UserViewController.followers}}</span>
+                    <span>following: {{UserViewController.following}}</span>
+                    <span>stars count: {{UserViewController.starsCount}}</span>
+                </div>
+                <ul class="user-repositories">
+                    <li class="result-item" ng-repeat="repo in UserViewController.repositoriesList">{{$index}}: {{repo.name}}</li>
+                </ul>
     </div>
-    <div class="user-achievements">
-        <span>followers: {{UserViewController.followers}}</span>
-        <span>following: {{UserViewController.following}}</span>
-        <span>stars count: {{UserViewController.starsCount}}</span>
+    <div class="loader-wrapper" ng-show="!UserViewController.userName">
+        <img src="../../images/loader.gif" />
     </div>
-    <ul class="user-repositories">
-        <li class="result-item" ng-repeat="repo in UserViewController.repositoriesList">{{repo.name}}</li>
-    </ul>
 </section>
-<div class="loading-message" ng-show="!UserViewController.userName">Loading...</div>

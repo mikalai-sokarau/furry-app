@@ -24,7 +24,9 @@ footer {
 
 header {
   height: 50px;
+  width: 100%;
   display: flex;
   background-color: lightgray;
   justify-content: center;
+  position: fixed;
 }

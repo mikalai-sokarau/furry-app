@@ -10,6 +10,7 @@ export default function($scope, $state, $stateParams) {
         let end = +this.currentPage + 3;
         const resultArr = [];
 
+        // fill the resultArr accoring to the start and end points
         while (start < 1) {
             start++;
             end++;
@@ -20,20 +21,29 @@ export default function($scope, $state, $stateParams) {
         for (let i = start; i <= end; i++) {
             resultArr.push(i);
         }
+        // add last pages to the resultArr
         if (this.lastResultsPage - end <= 3) {
             for (let i = end + 1; i <= this.lastResultsPage; i++) {
                 resultArr.push(i);
             }
-        } else if (this.lastResultsPage - end > 3) {
+        } else {
             resultArr.push(
                 "...",
                 this.lastResultsPage - 1,
                 this.lastResultsPage
             );
         }
-        if (this.currentPage > 4) {
-        } else if (start - 2 > 1) {
-            resultArr.unshift(1, 2, "...");
+        // add first pages to the resultArr
+        if (this.currentPage <= 7) {
+            for (let i = resultArr[0] - 1; i > 0; i--) {
+                resultArr.unshift(i);
+            }
+        } else {
+            resultArr.unshift(
+                1,
+                2,
+                '...'
+            )
         }
 
         return resultArr;
@@ -48,7 +58,7 @@ export default function($scope, $state, $stateParams) {
         }
     };
 
-    this.showUserPage = event => {
+    this.showUserPage = function(event) {
         $state.go("user", {
             text: event.currentTarget.textContent,
             page: $stateParams.page
@@ -69,9 +79,9 @@ export default function($scope, $state, $stateParams) {
         });
     };
 
-    this.calculateLastResultPage = num => {
+    function calculateLastResultPage(num) {
         const lastPage = Math.ceil(num / 10);
-        this.lastResultsPage = lastPage > 100 ? 100 : lastPage;
+        return lastPage > 100 ? 100 : lastPage;
     };
 
     $scope.$on("GITHUB_DATA_RECEIVED", (err, dataObj) => {
@@ -79,7 +89,7 @@ export default function($scope, $state, $stateParams) {
         this.currentPage = $stateParams.page;
         this.resultsList = dataObj.data;
         this.totalResultsCount = dataObj.totalCount;
-        this.calculateLastResultPage(dataObj.totalCount);
+        this.lastResultsPage = calculateLastResultPage(dataObj.totalCount);
         this.getPaginationList();
     });
 }

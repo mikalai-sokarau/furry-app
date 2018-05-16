@@ -42,7 +42,7 @@ export default function ($state, $stateParams, $rootScope, $http) {
                     totalCount: res.data.total_count
                 };
                 correctParams = fixParams(requestData.totalCount, params);
-                $rootScope.$emit("GITHUB_DATA_LOADED", requestData);
+                $rootScope.$broadcast("GITHUB_DATA_RECEIVED", requestData);
             });
             
         $state.go(directiveName, params);
@@ -57,7 +57,7 @@ export default function ($state, $stateParams, $rootScope, $http) {
                     data: res.data.items,
                     totalCount: res.data.total_count
                 };
-                $rootScope.$emit("GITHUB_DATA_LOADED", requestData);
+                $rootScope.$broadcast("GITHUB_DATA_RECEIVED", requestData);
             });
         $state.go(directiveName, params);
     }
@@ -71,7 +71,7 @@ export default function ($state, $stateParams, $rootScope, $http) {
                     data: res.data.items,
                     totalCount: res.data.total_count
                 };
-                $rootScope.$emit("GITHUB_DATA_LOADED", requestData);
+                $rootScope.$broadcast("GITHUB_DATA_RECEIVED", requestData);
             });
         $state.go(directiveName, params);
     }
@@ -80,16 +80,17 @@ export default function ($state, $stateParams, $rootScope, $http) {
         const directiveName = "user";
         sendRequest(`https://api.github.com/users/${params.text}`)
             .then(res1 => sendRequest(`https://api.github.com/users/${params.text}/starred`)
-                .then(res2 => sendRequest(`https://api.github.com/users/${params.text}/repos`)
+                .then(res2 => sendRequest(`https://api.github.com/users/${params.text}/repos?page=1&per_page=20`)
                     .then(res3 => {
                         const requestData = {
                             name: directiveName,
                             data: res1.data,
-                            repos: res2.data,
-                            starred: res3.data
+                            repos: res3.data,
+                            starred: res2.data
                         };
-                        $rootScope.$emit(
-                            "GITHUB_DATA_LOADED",
+
+                        $rootScope.$broadcast(
+                            "GITHUB_DATA_RECEIVED",
                             requestData
                         );
                     })
@@ -137,6 +138,7 @@ export default function ($state, $stateParams, $rootScope, $http) {
 
     return {
         getData: () => chooseRightCategory(),
-        getUrl: () => getCategoryFromUrl()
+        getUrl: () => getCategoryFromUrl(),
+        sendRequest: (path) => sendRequest(path)
     };
 }

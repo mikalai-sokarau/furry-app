@@ -17,7 +17,7 @@ const STATES = [
     {
         name: 'hello',
         url: '/',
-        template: "<p style='text-align: center;'>App's welcome page<p>"
+        template: "<p style='text-align: center; margin-top: 70px'>App's welcome page<p>"
     },
     {
         name: 'search',
@@ -26,7 +26,7 @@ const STATES = [
     },
     {
         name: 'user',
-        url: '/user?:text&:page',
+        url: '/user?:text',
         component: 'userView'
     }
 ];
