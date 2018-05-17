@@ -6,10 +6,13 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack-dev-server --open",
-    "build": "webpack"
+    "build": "webpack",
+    "eslint":
+      "./node_modules/.bin/eslint **/*.js"
   },
   "author": "Mikalai Sokarau",
   "license": "ISC",
+  "eslintIgnore": ["bundle.js", "webpack.config.js"],
   "devDependencies": {
     "css-loader": "^0.28.11",
     "eslint": "^4.19.1",

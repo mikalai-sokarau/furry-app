@@ -1,6 +1,6 @@
 export default function($scope, $state, $stateParams) {
     this.resultsList = [];
-    this.resultCategory = "";
+    this.resultCategory = '';
     this.currentPage = 0;
     this.totalResultsCount = 0;
     this.lastResultsPage = 0;
@@ -28,7 +28,7 @@ export default function($scope, $state, $stateParams) {
             }
         } else {
             resultArr.push(
-                "...",
+                '...',
                 this.lastResultsPage - 1,
                 this.lastResultsPage
             );
@@ -43,14 +43,14 @@ export default function($scope, $state, $stateParams) {
                 1,
                 2,
                 '...'
-            )
+            );
         }
 
         return resultArr;
     };
 
     this.goToPage = function(event) {
-        if (event.currentTarget.textContent != "...") {
+        if (event.currentTarget.textContent != '...') {
             $state.go($state.$current.name, {
                 text: $stateParams.text,
                 page: event.currentTarget.textContent
@@ -59,7 +59,7 @@ export default function($scope, $state, $stateParams) {
     };
 
     this.showUserPage = function(event) {
-        $state.go("user", {
+        $state.go('user', {
             text: event.currentTarget.textContent,
             page: $stateParams.page
         });
@@ -82,9 +82,9 @@ export default function($scope, $state, $stateParams) {
     function calculateLastResultPage(num) {
         const lastPage = Math.ceil(num / 10);
         return lastPage > 100 ? 100 : lastPage;
-    };
+    }
 
-    $scope.$on("GITHUB_DATA_RECEIVED", (err, dataObj) => {
+    $scope.$on('GITHUB_DATA_RECEIVED', (err, dataObj) => {
         this.resultCategory = dataObj.name;
         this.currentPage = $stateParams.page;
         this.resultsList = dataObj.data;

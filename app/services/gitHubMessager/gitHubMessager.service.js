@@ -16,23 +16,8 @@ export default function ($state, $stateParams, $rootScope, $http) {
         };
     }
 
-    function fixParams(page, params) {
-        const lastPage = Math.floor(page / 10);
-        const maxPage = lastPage < 100 ? lastPage : 100;
-        let correctPage = params.page;
-
-        if (correctPage < 1) {
-            correctPage = 1;
-        } else if (correctPage > maxPage) {
-            correctPage = maxPage;
-        }
-
-        return Object.assign({}, params, {page: correctPage});
-    }
-
     function getRepositories(params) {
-        const directiveName = "repositories";
-        let correctParams = params;
+        const directiveName = 'repositories';
 
         sendRequest(`https://api.github.com/search/repositories?q=${params.text}&page=${params.page}&per_page=10`)
             .then(res => {
@@ -41,15 +26,14 @@ export default function ($state, $stateParams, $rootScope, $http) {
                     data: res.data.items,
                     totalCount: res.data.total_count
                 };
-                correctParams = fixParams(requestData.totalCount, params);
-                $rootScope.$broadcast("GITHUB_DATA_RECEIVED", requestData);
+                $rootScope.$broadcast('GITHUB_DATA_RECEIVED', requestData);
             });
             
         $state.go(directiveName, params);
     }
 
     function getUsers(params) {
-        const directiveName = "users";
+        const directiveName = 'users';
         sendRequest(`https://api.github.com/search/users?q=${params.text}&page=${params.page}&per_page=10`)
             .then(res => {
                 const requestData = {
@@ -57,13 +41,13 @@ export default function ($state, $stateParams, $rootScope, $http) {
                     data: res.data.items,
                     totalCount: res.data.total_count
                 };
-                $rootScope.$broadcast("GITHUB_DATA_RECEIVED", requestData);
+                $rootScope.$broadcast('GITHUB_DATA_RECEIVED', requestData);
             });
         $state.go(directiveName, params);
     }
 
     function getIssues(params) {
-        const directiveName = "issues";
+        const directiveName = 'issues';
         sendRequest(`https://api.github.com/search/issues?q=${params.text}&page=${params.page}&per_page=10`)
             .then(res => {
                 const requestData = {
@@ -71,13 +55,13 @@ export default function ($state, $stateParams, $rootScope, $http) {
                     data: res.data.items,
                     totalCount: res.data.total_count
                 };
-                $rootScope.$broadcast("GITHUB_DATA_RECEIVED", requestData);
+                $rootScope.$broadcast('GITHUB_DATA_RECEIVED', requestData);
             });
         $state.go(directiveName, params);
     }
 
     function getUserInfo(params) {
-        const directiveName = "user";
+        const directiveName = 'user';
         sendRequest(`https://api.github.com/users/${params.text}`)
             .then(res1 => sendRequest(`https://api.github.com/users/${params.text}/starred`)
                 .then(res2 => sendRequest(`https://api.github.com/users/${params.text}/repos?page=1&per_page=20`)
@@ -90,7 +74,7 @@ export default function ($state, $stateParams, $rootScope, $http) {
                         };
 
                         $rootScope.$broadcast(
-                            "GITHUB_DATA_RECEIVED",
+                            'GITHUB_DATA_RECEIVED',
                             requestData
                         );
                     })
@@ -105,7 +89,7 @@ export default function ($state, $stateParams, $rootScope, $http) {
             headers: {
                 'Authorization': GITHUB_TOKEN
             }
-        })
+        });
     }
 
     function chooseRightCategory(category = $state.current.name) {
@@ -113,20 +97,20 @@ export default function ($state, $stateParams, $rootScope, $http) {
 
         if (params.text) {
             switch (category) {
-                case "repositories":
-                    getRepositories(params);
-                    break;
-                case "issues":
-                    getIssues(params);
-                    break;
-                case "users":
-                    getUsers(params);
-                    break;
-                case "user":
-                    getUserInfo(params);
-                    break;
-                default:
-                    $state.go("hello");
+            case 'repositories':
+                getRepositories(params);
+                break;
+            case 'issues':
+                getIssues(params);
+                break;
+            case 'users':
+                getUsers(params);
+                break;
+            case 'user':
+                getUserInfo(params);
+                break;
+            default:
+                $state.go('hello');
             }
         } else {
             /*
@@ -138,7 +122,6 @@ export default function ($state, $stateParams, $rootScope, $http) {
 
     return {
         getData: () => chooseRightCategory(),
-        getUrl: () => getCategoryFromUrl(),
         sendRequest: (path) => sendRequest(path)
     };
 }

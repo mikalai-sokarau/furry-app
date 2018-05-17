@@ -1,11 +1,11 @@
 export default function($state, $stateParams, $transitions) {
-    this.searchText = "";
+    this.searchText = '';
 
     this.search = () => {
         const urlSearchText = $stateParams.text;
         const currentStateName =
-            $state.current.name === "hello"
-                ? "repositories"
+            $state.current.name === 'hello'
+                ? 'repositories'
                 : $state.current.name;
 
         if (urlSearchText !== this.searchText) {

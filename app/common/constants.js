@@ -17,7 +17,7 @@ const STATES = [
     {
         name: 'hello',
         url: '/',
-        template: "<p style='text-align: center; margin-top: 70px'>App's welcome page<p>"
+        template: '<p class="welcome">App\'s welcome page<p>'
     },
     {
         name: 'search',

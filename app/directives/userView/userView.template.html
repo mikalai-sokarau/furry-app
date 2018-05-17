@@ -1,21 +1,24 @@
 <section>
-    <div class="user-content-wrapper"  ng-show="UserViewController.userName">
-            <div class="user-info">
-                    <figure>
-                        <div class="user-image-container">
-                            <img src="{{UserViewController.avatarUrl}}" />
-                        </div>
-                        <figcaption>{{UserViewController.userName}}</figcaption>
-                    </figure>
+    <div class="user-content-wrapper" ng-show="UserViewController.userName">
+        <div class="user-info">
+            <figure>
+                <div class="user-image-container">
+                    <img src="{{UserViewController.avatarUrl}}" />
                 </div>
-                <div class="user-achievements">
-                    <span>followers: {{UserViewController.followers}}</span>
-                    <span>following: {{UserViewController.following}}</span>
-                    <span>stars count: {{UserViewController.starsCount}}</span>
-                </div>
-                <ul class="user-repositories">
-                    <li class="result-item" ng-repeat="repo in UserViewController.repositoriesList">{{$index}}: {{repo.name}}</li>
-                </ul>
+                <figcaption>{{UserViewController.userName}}</figcaption>
+            </figure>
+        </div>
+        <div class="user-achievements">
+            <span>followers: {{UserViewController.followers}}</span>
+            <span>following: {{UserViewController.following}}</span>
+            <span>stars count: {{UserViewController.starsCount}}</span>
+        </div>
+        <ul class="user-repositories">
+            <li class="result-item" ng-repeat="repo in UserViewController.repositoriesList">
+                <span>{{$index}}:</span> 
+                <a href={{repo.html_url}} target="_blank">{{repo.name}}</a>
+            </li>
+        </ul>
     </div>
     <div class="loader-wrapper" ng-show="!UserViewController.userName">
         <img src="../../images/loader.gif" />

@@ -1,11 +1,11 @@
 export default function($scope, $stateParams, gitHubMessager) {
-    this.userName = "";
-    this.avatarUrl = "";
+    this.userName = '';
+    this.avatarUrl = '';
     this.followers = 0;
     this.following = 0;
     this.starsCount = 0;
     this.repositoriesList = [];
-    this.scrolledHeight = -1000;
+    this.scrolledHeight = -900;
     this.chunksLoaded = 1;
     
 
@@ -17,12 +17,12 @@ export default function($scope, $stateParams, gitHubMessager) {
             this.scrolledHeight -= infinitiLoadElementHeight;
             gitHubMessager
                 .sendRequest(`https://api.github.com/users/${$stateParams.text}/repos?page=${this.chunksLoaded}&per_page=20`)
-                .then(res => this.repositoriesList.push(...res.data))
+                .then(res => this.repositoriesList.push(...res.data));
             this.chunksLoaded++;
         }
-    }
+    };
 
-    $scope.$on("GITHUB_DATA_RECEIVED", (err, dataObj) => {
+    $scope.$on('GITHUB_DATA_RECEIVED', (err, dataObj) => {
         this.userName = dataObj.data.login;
         this.avatarUrl = dataObj.data.avatar_url;
         this.followers = dataObj.data.followers;

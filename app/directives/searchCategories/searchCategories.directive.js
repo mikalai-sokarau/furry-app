@@ -8,5 +8,5 @@ export default function () {
         templateUrl: searchCategoriesTemplate,
         controller: searchCategoriesCtrl,
         controllerAs: 'SearchCategoriesCtrl'
-    }
-};
+    };
+}

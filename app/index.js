@@ -1,5 +1,5 @@
 import angular from 'angular';
-import uiRouter from '@uirouter/angularjs';
+import '@uirouter/angularjs';
 
 import { STATES } from './common/constants';
 
@@ -10,7 +10,6 @@ import searchResultsList from './directives/searchResultsList/searchResultsList.
 import resultItem from './directives/resultItem/resultItem.directive';
 import userView from './directives/userView/userView.directive';
 import searchCategories from './directives/searchCategories/searchCategories.directive';
-import pagination from './directives/pagination/pagination.directive';
 
 import gitHubMessager from './services/gitHubMessager/gitHubMessager.service';
 
@@ -27,6 +26,5 @@ angular.module('furry-app', ['ui.router'])
     .directive('resultItem', resultItem)
     .directive('userView', userView)
     .directive('searchCategories', searchCategories)
-    .directive('pagination', pagination)
 
     .factory('gitHubMessager', gitHubMessager);

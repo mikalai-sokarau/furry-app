@@ -8,5 +8,5 @@ export default function () {
         templateUrl: resultItemTemplate,
         controller: resultItemCtrl,
         controllerAs: 'resultItemCtrl',
-    }
-};
+    };
+}
