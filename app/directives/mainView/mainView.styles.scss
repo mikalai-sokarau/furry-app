@@ -1,34 +1,27 @@
 .search-results-content-wrapper {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   height: 100%;
-  margin-top: 50px;
+  width: 100%;
 
-  .search-results-side-bar {
-    height: 100%;
-    width: 20%;
+  search-bar {
+    width: 100%;
+  }
+
+  .search-results-content {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
 
-    a {
-      padding: 3px;
-    }
-
-    ul {
-      list-style-type: none;
-      padding: 0;
-      margin: 0;
-
-      li {
-        padding: 5px;
-        border: 1px solid white;
-        background-color: moccasin;
-        cursor: pointer;
-
-        .active {
-          background-color: rgb(252, 217, 128);
-        }
-      }
+    ui-view {
+      width: 100%;
     }
   }
+}
+
+header {
+  height: 50px;
+  width: 100%;
+  display: flex;
+  background-color: lightgray;
+  justify-content: center;
 }

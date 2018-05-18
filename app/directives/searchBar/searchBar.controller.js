@@ -5,10 +5,11 @@ export default function($state, $stateParams, $transitions) {
         const urlSearchText = $stateParams.text;
         const currentStateName =
             $state.current.name === 'hello'
-                ? 'repositories'
-                : $state.current.name;
+                ? 'search.repositories'
+                : `search.${$state.current.name}`;
 
         if (urlSearchText !== this.searchText) {
+            
             $state.go(currentStateName, { text: this.searchText, page: 1 });
         } else {
             /* 

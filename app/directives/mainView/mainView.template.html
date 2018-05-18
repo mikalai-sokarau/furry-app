@@ -1,4 +1,7 @@
 <div class="search-results-content-wrapper">
-    <search-categories class="search-results-side-bar"></search-categories>
-    <search-results-list class="search-results-list"></search-results-list>
+    <search-bar></search-bar>
+    <div class="search-results-content">
+        <search-categories ng-if="!MainViewCtrl.isWelcomePage"></search-categories>
+        <ui-view>hello</ui-view>
+    </div>
 </div>

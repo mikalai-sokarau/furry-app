@@ -17,19 +17,19 @@ export default function ($state, $stateParams, $rootScope, $http) {
     }
 
     function getRepositories(params) {
-        const directiveName = 'repositories';
+        // const directiveName = 'repositories';
 
-        sendRequest(`https://api.github.com/search/repositories?q=${params.text}&page=${params.page}&per_page=10`)
-            .then(res => {
-                const requestData = {
-                    name: directiveName,
-                    data: res.data.items,
-                    totalCount: res.data.total_count
-                };
-                $rootScope.$broadcast('GITHUB_DATA_RECEIVED', requestData);
-            });
+        return sendRequest(`https://api.github.com/search/repositories?q=${params.text}&page=${params.page}&per_page=10`);
+        //     .then(res => {
+        //         const requestData = {
+        //             name: directiveName,
+        //             data: res.data.items,
+        //             totalCount: res.data.total_count
+        //         };
+        //         $rootScope.$broadcast('GITHUB_DATA_RECEIVED', requestData);
+        //     });
             
-        $state.go(directiveName, params);
+        // $state.go(directiveName, params);
     }
 
     function getUsers(params) {
@@ -48,6 +48,7 @@ export default function ($state, $stateParams, $rootScope, $http) {
 
     function getIssues(params) {
         const directiveName = 'issues';
+        $state.go(directiveName, params);
         sendRequest(`https://api.github.com/search/issues?q=${params.text}&page=${params.page}&per_page=10`)
             .then(res => {
                 const requestData = {
@@ -55,9 +56,9 @@ export default function ($state, $stateParams, $rootScope, $http) {
                     data: res.data.items,
                     totalCount: res.data.total_count
                 };
+                // return requestData;
                 $rootScope.$broadcast('GITHUB_DATA_RECEIVED', requestData);
             });
-        $state.go(directiveName, params);
     }
 
     function getUserInfo(params) {
@@ -92,36 +93,39 @@ export default function ($state, $stateParams, $rootScope, $http) {
         });
     }
 
-    function chooseRightCategory(category = $state.current.name) {
-        const params = extractParametersFromUrl();
+    // function chooseRightCategory(category = $state.current.name) {
+    //     const params = extractParametersFromUrl();
 
-        if (params.text) {
-            switch (category) {
-            case 'repositories':
-                getRepositories(params);
-                break;
-            case 'issues':
-                getIssues(params);
-                break;
-            case 'users':
-                getUsers(params);
-                break;
-            case 'user':
-                getUserInfo(params);
-                break;
-            default:
-                $state.go('hello');
-            }
-        } else {
-            /*
-                error message
-            */
-            // console.log('no parameters chosen')
-        }
-    }
+    //     if (params.text) {
+    //         switch (category) {
+    //         case 'repositories':
+    //             getRepositories(params);
+    //             break;
+    //         case 'issues':
+    //             getIssues(params);
+    //             break;
+    //         case 'users':
+    //             getUsers(params);
+    //             break;
+    //         case 'user':
+    //             getUserInfo(params);
+    //             break;
+    //         default:
+    //             $state.go('hello');
+    //         }
+    //     } else {
+    //         /*
+    //             error message
+    //         */
+    //         // console.log('no parameters chosen')
+    //     }
+    // }
 
     return {
-        getData: () => chooseRightCategory(),
+        getIssues: (params) => getIssues(params),
+        getUsers: (params) => getUsers(params),
+        getRepositories: (params) => getRepositories(params),
+        // getData: () => chooseRightCategory(),
         sendRequest: (path) => sendRequest(path)
     };
 }

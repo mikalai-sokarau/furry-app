@@ -1,5 +1,5 @@
-export default function($scope, $stateParams, $transitions, gitHubMessager) {
-    $transitions.onSuccess({}, function() {
-        gitHubMessager.getData();
-    });
+export default function($transitions, gitHubMessager) {
+    // $transitions.onSuccess({}, function() {
+    //     gitHubMessager.getData();
+    // });
 }

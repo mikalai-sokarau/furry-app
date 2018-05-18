@@ -1,0 +1,28 @@
+// .active { color: red; font-weight: bold; }
+search-categories {
+  width: 20%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+
+  a {
+    padding: 3px;
+  }
+
+  ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+
+    li {
+      padding: 5px;
+      border: 1px solid white;
+      background-color: moccasin;
+      cursor: pointer;
+
+      .active {
+        color: rgb(252, 217, 128);
+      }
+    }
+  }
+}

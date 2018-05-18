@@ -1,9 +1,24 @@
-export default function($scope, $state, $stateParams) {
-    this.resultsList = [];
+export default function($scope, $state, $stateParams, gitHubMessager) {
     this.resultCategory = '';
     this.currentPage = 0;
     this.totalResultsCount = 0;
     this.lastResultsPage = 0;
+    this.resultsList = [];
+
+    gitHubMessager
+        .getRepositories({
+            text: $stateParams.text,
+            page: $stateParams.page
+        })
+        .then(res => {
+            this.resultsList = res.data.items;
+            this.resultCategory = $state.current.name.split('.')[1];
+            this.currentPage = $stateParams.page;
+            this.totalResultsCount = res.data.totalCount;
+            this.lastResultsPage = calculateLastResultPage(res.data.totalCount);
+            this.getPaginationList();
+            console.log(this.resultsList);
+        });
 
     this.getPaginationList = function() {
         let start = this.currentPage - 3;
@@ -28,7 +43,7 @@ export default function($scope, $state, $stateParams) {
             }
         } else {
             resultArr.push(
-                '...',
+                "...",
                 this.lastResultsPage - 1,
                 this.lastResultsPage
             );
@@ -39,11 +54,7 @@ export default function($scope, $state, $stateParams) {
                 resultArr.unshift(i);
             }
         } else {
-            resultArr.unshift(
-                1,
-                2,
-                '...'
-            );
+            resultArr.unshift(1, 2, "...");
         }
 
         return resultArr;
@@ -84,12 +95,12 @@ export default function($scope, $state, $stateParams) {
         return lastPage > 100 ? 100 : lastPage;
     }
 
-    $scope.$on('GITHUB_DATA_RECEIVED', (err, dataObj) => {
-        this.resultCategory = dataObj.name;
-        this.currentPage = $stateParams.page;
-        this.resultsList = dataObj.data;
-        this.totalResultsCount = dataObj.totalCount;
-        this.lastResultsPage = calculateLastResultPage(dataObj.totalCount);
-        this.getPaginationList();
-    });
+    // $scope.$on('GITHUB_DATA_RECEIVED', (err, dataObj) => {
+    //     this.resultCategory = dataObj.name;
+    //     this.currentPage = $stateParams.page;
+    //     this.resultsList = dataObj.data;
+    //     this.totalResultsCount = dataObj.totalCount;
+    //     this.lastResultsPage = calculateLastResultPage(dataObj.totalCount);
+    //     this.getPaginationList();
+    // });
 }

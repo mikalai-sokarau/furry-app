@@ -1,23 +1,13 @@
 const STATES = [
     {
-        name: 'repositories',
-        url: '/search/repositories?:text&:page',
-        component: 'mainView'
-    },
-    {
-        name: 'issues',
-        url: '/search/issues?:text&:page',
-        component: 'mainView'
-    },
-    {
-        name: 'users',
-        url: '/search/users?:text&:page',
-        component: 'mainView'
-    },
-    {
         name: 'hello',
-        url: '/',
-        template: '<p class="welcome">App\'s welcome page<p>'
+        url: '/hello',
+        component: 'mainView'
+    },
+    {
+        name: 'user',
+        url: '/user/name',
+        component: 'userView'
     },
     {
         name: 'search',
@@ -25,9 +15,31 @@ const STATES = [
         component: 'mainView'
     },
     {
-        name: 'user',
-        url: '/user?:text',
-        component: 'userView'
+        name: 'search.repositories',
+        url: '/repositories?text&page',
+        component: 'searchResultsList',
+        params: {
+            page: null,
+            text: null
+        }
+    },
+    {
+        name: 'search.issues',
+        url: '/issues?text&page',
+        component: 'searchResultsList',
+        params: {
+            page: null,
+            text: null
+        }
+    },
+    {
+        name: 'search.users',
+        url: '/users?text&page',
+        component: 'searchResultsList',
+        params: {
+            page: null,
+            text: null
+        }
     }
 ];
 
