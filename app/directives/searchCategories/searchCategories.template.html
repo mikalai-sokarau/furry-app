@@ -2,7 +2,7 @@
   <ul>
       <li 
         ng-repeat="categoryName in SearchCategoriesCtrl.categories" 
-        ui-sref="search.categories({type: categoryName, page: 5})" 
+        ng-click="SearchCategoriesCtrl.changeCategory(categoryName)"
         ui-sref-active="active">
           {{::categoryName}}
       </li>

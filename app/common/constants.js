@@ -22,7 +22,7 @@ const STATES = [
     },
     {
         name: 'search.categories',
-        url: '/categoires?type&text&page',
+        url: '/categories?type&text&page',
         component: 'searchResultsList',
         params: {
             type: null,       

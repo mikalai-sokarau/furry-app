@@ -4,7 +4,7 @@ export default function($scope, $state, $stateParams, gitHubMessager) {
     this.totalResultsCount = 0;
     this.lastResultsPage = 0;
     this.resultsList = [];
-    console.log($stateParams);
+
     gitHubMessager
         .getData({
             type: $stateParams.type,
@@ -13,12 +13,13 @@ export default function($scope, $state, $stateParams, gitHubMessager) {
         })
         .then(res => {
             this.resultsList = res.data.items;
-            this.resultCategory = $state.current.name.split('.')[1];
+            this.resultCategory = $stateParams.type;
             this.currentPage = $stateParams.page;
             this.totalResultsCount = res.data.totalCount;
             this.lastResultsPage = calculateLastResultPage(res.data.totalCount);
             this.getPaginationList();
-            console.log(res);
+            console.log(this.resultCategory);
+            console.log(this.resultsList);
         });
 
     this.getPaginationList = function() {
@@ -70,11 +71,8 @@ export default function($scope, $state, $stateParams, gitHubMessager) {
         }
     };
 
-    this.showUserPage = function(event) {
-        $state.go('user', {
-            text: event.currentTarget.textContent,
-            page: $stateParams.page
-        });
+    this.showUserPage = function(name) {
+        $state.go('user', { name });
     };
 
     this.goBack = function() {

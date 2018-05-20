@@ -3,14 +3,14 @@ export default function($state, $stateParams, $transitions) {
 
     this.search = () => {
         const urlSearchText = $stateParams.text;
-        const newCategoryName =
-            $state.current.name === 'hello'
-                ? 'repositories'
-                : $state.current.type;
+        const newCategoryType =
+            $state.current.name !== 'hello'
+                ? $stateParams.type
+                : 'repositories';
 
         if (urlSearchText !== this.searchText) {
             $state.go('search.categories', {
-                type: newCategoryName,
+                type: newCategoryType,
                 text: this.searchText,
                 page: 1
             });
