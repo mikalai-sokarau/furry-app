@@ -1,10 +1,10 @@
 <aside>
   <ul>
       <li 
-        ng-repeat="category in SearchCategoriesCtrl.categories" 
-        ui-sref="{{ category.name }}({page: 5})" 
+        ng-repeat="categoryName in SearchCategoriesCtrl.categories" 
+        ui-sref="search.categories({type: categoryName, page: 5})" 
         ui-sref-active="active">
-          {{SearchCategoriesCtrl.getCategoryName(category);}}
+          {{::categoryName}}
       </li>
   </ul>
 </aside>

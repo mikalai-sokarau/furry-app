@@ -4,9 +4,10 @@ export default function($scope, $state, $stateParams, gitHubMessager) {
     this.totalResultsCount = 0;
     this.lastResultsPage = 0;
     this.resultsList = [];
-
+    console.log($stateParams);
     gitHubMessager
-        .getRepositories({
+        .getData({
+            type: $stateParams.type,
             text: $stateParams.text,
             page: $stateParams.page
         })
@@ -17,7 +18,7 @@ export default function($scope, $state, $stateParams, gitHubMessager) {
             this.totalResultsCount = res.data.totalCount;
             this.lastResultsPage = calculateLastResultPage(res.data.totalCount);
             this.getPaginationList();
-            console.log(this.resultsList);
+            console.log(res);
         });
 
     this.getPaginationList = function() {
@@ -43,7 +44,7 @@ export default function($scope, $state, $stateParams, gitHubMessager) {
             }
         } else {
             resultArr.push(
-                "...",
+                '...',
                 this.lastResultsPage - 1,
                 this.lastResultsPage
             );
@@ -54,7 +55,7 @@ export default function($scope, $state, $stateParams, gitHubMessager) {
                 resultArr.unshift(i);
             }
         } else {
-            resultArr.unshift(1, 2, "...");
+            resultArr.unshift(1, 2, '...');
         }
 
         return resultArr;

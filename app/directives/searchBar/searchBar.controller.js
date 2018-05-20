@@ -3,14 +3,17 @@ export default function($state, $stateParams, $transitions) {
 
     this.search = () => {
         const urlSearchText = $stateParams.text;
-        const currentStateName =
+        const newCategoryName =
             $state.current.name === 'hello'
-                ? 'search.repositories'
-                : `search.${$state.current.name}`;
+                ? 'repositories'
+                : $state.current.type;
 
         if (urlSearchText !== this.searchText) {
-            
-            $state.go(currentStateName, { text: this.searchText, page: 1 });
+            $state.go('search.categories', {
+                type: newCategoryName,
+                text: this.searchText,
+                page: 1
+            });
         } else {
             /* 
             do nothing, search textes are equal, 

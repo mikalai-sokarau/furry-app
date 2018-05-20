@@ -11,12 +11,12 @@
     </div>
     <div class="result-item" ng-switch="SearchResultsListCtrl.resultCategory" ng-repeat="item in SearchResultsListCtrl.resultsList">
         <div ng-switch-when="users">
-            <a ui-sref="user/ulala" ui-sref-active="active">{{item.owner.login}}</a>
+            <a ui-sref="user" ui-sref-active="active">{{item.owner.login}}</a>
             <!-- ui-sref="{{ category.name }}({page: SearchCategoriesCtrl.page})" 
         ui-sref-active="active" -->
         </div>
         <div ng-switch-when="repositories">
-            <a href="{{item.html_url}}"  target="_blank">{{item.owner.login}}</a>
+            <a href="{{item.html_url}}" target="_blank">{{item.owner.login}}</a>
         </div>
         <div ng-switch-when="issues">
             <a href="{{item.html_url}}" target="_blank">{{item.name}}</a>
