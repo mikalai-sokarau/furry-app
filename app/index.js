@@ -3,7 +3,7 @@ import '@uirouter/angularjs';
 
 import { STATES } from './common/constants';
 
-import root from './directives/root/root.directive';
+// import root from './directives/root/root.directive';
 import searchBar from './directives/searchBar/searchBar.directive';
 import mainView from './directives/mainView/mainView.directive';
 import searchResultsList from './directives/searchResultsList/searchResultsList.directive';
@@ -12,6 +12,8 @@ import userView from './directives/userView/userView.directive';
 import searchCategories from './directives/searchCategories/searchCategories.directive';
 
 import gitHubMessager from './services/gitHubMessager/gitHubMessager.service';
+import gitHubCache from './services/gitHubCache/gitHubCache.service';
+import debounce from './services/debounce/debounce.service';
 
 angular.module('furry-app', ['ui.router'])
     .config(function ($stateProvider, $urlRouterProvider) {
@@ -19,7 +21,7 @@ angular.module('furry-app', ['ui.router'])
         $urlRouterProvider.otherwise('/hello');
     })
 
-    .directive('root', root)
+    // .directive('root', root)
     .directive('searchBar', searchBar)
     .directive('mainView', mainView)
     .directive('searchResultsList', searchResultsList)
@@ -27,4 +29,6 @@ angular.module('furry-app', ['ui.router'])
     .directive('userView', userView)
     .directive('searchCategories', searchCategories)
 
-    .factory('gitHubMessager', gitHubMessager);
+    .factory('gitHubMessager', gitHubMessager)
+    .factory('gitHubCache', gitHubCache)
+    .factory('debounce', debounce);

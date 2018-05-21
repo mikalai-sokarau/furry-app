@@ -5,22 +5,22 @@
                 <div class="user-image-container">
                     <img src="{{UserViewController.avatarUrl}}" />
                 </div>
-                <figcaption>{{UserViewController.userName}}</figcaption>
+                <figcaption>{{::UserViewController.userName}}</figcaption>
             </figure>
         </div>
         <div class="user-achievements">
-            <span>followers: {{UserViewController.followers}}</span>
-            <span>following: {{UserViewController.following}}</span>
-            <span>stars count: {{UserViewController.starsCount}}</span>
+            <span>followers: {{::UserViewController.followers}}</span>
+            <span>following: {{::UserViewController.following}}</span>
+            <span>stars count: {{::UserViewController.starsCount}}</span>
         </div>
         <ul class="user-repositories">
             <li class="result-item" ng-repeat="repo in UserViewController.repositoriesList">
-                <span>{{$index}}:</span> 
-                <a href={{repo.html_url}} target="_blank">{{repo.name}}</a>
+                <span>{{$index + 1}}:</span> 
+                <a href={{::repo.html_url}} target="_blank">{{::repo.name}}</a>
             </li>
         </ul>
     </div>
-    <div class="loader-wrapper" ng-show="!UserViewController.userName">
+    <div class="loader-wrapper" ng-show="UserViewController.isContentLoading">
         <img src="../../images/loader.gif" />
     </div>
 </section>

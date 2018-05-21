@@ -1,7 +1,6 @@
 <div class="search-results-content-wrapper">
-    <search-bar></search-bar>
     <div class="search-results-content">
-        <search-categories ng-if="!MainViewCtrl.isWelcomePage"></search-categories>
+        <search-categories ng-show="MainViewCtrl.isCategoriesPage"></search-categories>
         <ui-view>hello</ui-view>
     </div>
 </div>

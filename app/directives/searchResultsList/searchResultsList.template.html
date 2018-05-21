@@ -3,7 +3,7 @@
         <input type="button" ng-disabled="SearchResultsListCtrl.currentPage <= 1" ng-click="SearchResultsListCtrl.goBack()" value="&laquo;">
         <ul>
             <li ng-repeat="item in SearchResultsListCtrl.getPaginationList() track by $index">
-                <a href="" ng-disabled="item === '...'" ng-click="SearchResultsListCtrl.goToPage($event)">{{item}}</a>
+                <a href="" ng-disabled="item === '...'" ng-click="SearchResultsListCtrl.goToPage($event)">{{::item}}</a>
             </li>
         </ul>
         <input type="button" ng-disabled="SearchResultsListCtrl.currentPage >= SearchResultsListCtrl.lastResultsPage" ng-click="SearchResultsListCtrl.goForward()"
@@ -11,15 +11,13 @@
     </div>
     <div class="result-item" ng-switch="SearchResultsListCtrl.resultCategory" ng-repeat="item in SearchResultsListCtrl.resultsList">
         <div ng-switch-when="users">
-            <a href ng-click="SearchResultsListCtrl.showUserPage(item.login);">{{item.login}}</a>
-            <!-- ui-sref="{{ category.name }}({page: SearchCategoriesCtrl.page})" 
-        ui-sref-active="active" -->
+            <a href ng-click="SearchResultsListCtrl.showUserPage(item.login);">{{::item.login}}</a>
         </div>
         <div ng-switch-when="repositories">
-            <a href="{{item.html_url}}" target="_blank">{{item.name}}</a>
+            <a href="{{::item.html_url}}" target="_blank">{{::item.name}}</a>
         </div>
         <div ng-switch-when="issues">
-            <a href="{{item.html_url}}" target="_blank">{{item.title}}</a>
+            <a href="{{::item.html_url}}" target="_blank">{{::item.title}}</a>
         </div>
     </div>
 </section>

@@ -1,6 +1,5 @@
-export default function($state, $stateParams, $transitions) {
+export default function($state, $stateParams) {
     this.searchText = '';
-
     this.search = () => {
         const urlSearchText = $stateParams.text;
         const newCategoryType =
@@ -21,8 +20,4 @@ export default function($state, $stateParams, $transitions) {
             */
         }
     };
-
-    $transitions.onSuccess({}, () => {
-        this.searchText = $stateParams.text;
-    });
 }

@@ -1,13 +1,14 @@
-export default function($scope, $stateParams, gitHubMessager) {
+export default function($scope, $stateParams, gitHubMessager, debounce) {
     this.userName = '';
     this.avatarUrl = '';
     this.followers = 0;
     this.following = 0;
     this.starsCount = 0;
     this.repositoriesList = [];
-    this.scrolledHeight = -900;
-    this.chunksLoaded = 1;
+    this.isContentLoading = true;
 
+    let nextPageToLoad = 2;
+    
     gitHubMessager.getUser($stateParams.name).then(res => {
         this.userName = res.data.login;
         this.avatarUrl = res.data.avatar_url;
@@ -15,25 +16,28 @@ export default function($scope, $stateParams, gitHubMessager) {
         this.following = res.data.following;
         this.starsCount = res.starred.length;
         this.repositoriesList = res.repos;
+        this.isContentLoading = false;
     });
 
-    // const userRepositoriesElem = document.querySelector('.user-repositories');
-    // const infinitiLoadElementHeight = 2060;
+    const loadMoreRepositoriesFromGitHub = debounce(() => {
+        const fullHeight = document.body.scrollHeight;
+        const windowInnerHeight = window.innerHeight;
+        const scrolledHeight = window.pageYOffset;
+        const pixelsRemainToTheEndOfTheWindow = 300;
+        this.isContentLoading = true;
 
-    // window.onscroll = () => {
-    //     if (
-    //         this.scrolledHeight >
-    //         userRepositoriesElem.getBoundingClientRect().top
-    //     ) {
-    //         this.scrolledHeight -= infinitiLoadElementHeight;
-    //         gitHubMessager
-    //             .sendRequest(
-    //                 `https://api.github.com/users/${
-    //                     $stateParams.text
-    //                 }/repos?page=${this.chunksLoaded}&per_page=20`
-    //             )
-    //             .then(res => this.repositoriesList.push(...res.data));
-    //         this.chunksLoaded++;
-    //     }
-    // };
+        if (fullHeight - windowInnerHeight - scrolledHeight <= pixelsRemainToTheEndOfTheWindow) {
+            gitHubMessager
+                .loadMoreRepositories($stateParams.name, nextPageToLoad)
+                .then(res => {
+                    if (!res.data.length) window.onscroll = null;
+                    this.repositoriesList.push(...res.data);
+                    nextPageToLoad++;
+                    this.isContentLoading = false;
+                });
+        }
+    }, 300);
+
+    window.onscroll = () => loadMoreRepositoriesFromGitHub();
+
 }

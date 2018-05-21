@@ -1,3 +1,3 @@
 export default function($state) {
-    this.isWelcomePage = $state.current.name === 'hello';
+    this.isCategoriesPage = $state.current.name === 'search.categories';
 }

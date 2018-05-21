@@ -1,3 +1,11 @@
+html,
+body {
+  min-width: 600px;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
 .search-results-content-wrapper {
   display: flex;
   flex-direction: column;
@@ -11,6 +19,7 @@
   .search-results-content {
     display: flex;
     flex-direction: row;
+    flex: 1 0 auto;
 
     ui-view {
       width: 100%;
@@ -24,4 +33,20 @@ header {
   display: flex;
   background-color: lightgray;
   justify-content: center;
+}
+
+// root {
+//   display: flex;
+//   flex-direction: column;
+//   height: 100%;
+// }
+
+// .content {
+//   flex: 1 0 auto;
+// }
+
+footer {
+  flex: 0 0 auto;
+  text-align: center;
+  background-color: lightgray;
 }

@@ -20,8 +20,16 @@
     margin: 0 10px;
   }
   
+  ul {
+    display: flex;
+    flex-direction: row;
+    margin: 0;
+    padding: 0;
+  }
+
   li {
     padding: 2px;
+    list-style: none;
 
     a {
       text-decoration: none;

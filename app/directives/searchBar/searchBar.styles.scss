@@ -1,3 +1,7 @@
+header {
+  align-items: center;
+}
+
 .search {
   display: flex;
   align-items: center;
@@ -12,4 +16,8 @@
     width: 100%;
     height: auto;
   }
+}
+
+.search-bar-back-btn {
+  height: 25px;
 }
