@@ -1,4 +1,4 @@
-export default function($scope, $stateParams, gitHubMessager, debounce) {
+export default function($scope, $stateParams, gitHubMessager, throttle) {
     this.userName = '';
     this.avatarUrl = '';
     this.followers = 0;
@@ -26,7 +26,7 @@ export default function($scope, $stateParams, gitHubMessager, debounce) {
             this.isError = true;
         });
 
-    const loadMoreRepositoriesFromGitHub = debounce(() => {
+    window.onscroll = throttle(() => {
         const fullHeight = document.body.scrollHeight;
         const windowInnerHeight = window.innerHeight;
         const scrolledHeight = window.pageYOffset;
@@ -35,15 +35,12 @@ export default function($scope, $stateParams, gitHubMessager, debounce) {
 
         if (fullHeight - windowInnerHeight - scrolledHeight <= pixelsRemainToTheEndOfTheWindow) {
             gitHubMessager
-                .loadMoreRepositories($stateParams.name, nextPageToLoad)
+                .loadMoreRepositories($stateParams.name, nextPageToLoad++)
                 .then(res => {
                     if (!res.data.length) window.onscroll = null;
                     this.repositoriesList.push(...res.data);
-                    nextPageToLoad++;
                     this.isContentLoading = false;
                 });
         }
-    }, 300);
-
-    window.onscroll = () => loadMoreRepositoriesFromGitHub();
+    }, 500);
 }

@@ -1,4 +1,4 @@
-export default function() {
+export default function($timeout) {
     
     return function(func, wait) {
         let timeout;
@@ -12,7 +12,7 @@ export default function() {
             };
     
             clearTimeout(timeout);
-            timeout = setTimeout(later, wait);
+            timeout = $timeout(later, wait);
         };
     };
 }

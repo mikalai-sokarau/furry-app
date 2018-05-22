@@ -3,7 +3,6 @@ import '@uirouter/angularjs';
 
 import { STATES } from './common/constants';
 
-// import root from './directives/root/root.directive';
 import searchBar from './directives/searchBar/searchBar.directive';
 import mainView from './directives/mainView/mainView.directive';
 import searchResultsList from './directives/searchResultsList/searchResultsList.directive';
@@ -13,7 +12,7 @@ import searchCategories from './directives/searchCategories/searchCategories.dir
 
 import gitHubMessager from './services/gitHubMessager/gitHubMessager.service';
 import gitHubCache from './services/gitHubCache/gitHubCache.service';
-import debounce from './services/debounce/debounce.service';
+import throttle from './services/throttle/throttle.service';
 
 angular.module('furry-app', ['ui.router'])
     .config(function ($stateProvider, $urlRouterProvider) {
@@ -21,7 +20,6 @@ angular.module('furry-app', ['ui.router'])
         $urlRouterProvider.otherwise('/hello');
     })
 
-    // .directive('root', root)
     .directive('searchBar', searchBar)
     .directive('mainView', mainView)
     .directive('searchResultsList', searchResultsList)
@@ -31,4 +29,4 @@ angular.module('furry-app', ['ui.router'])
 
     .factory('gitHubMessager', gitHubMessager)
     .factory('gitHubCache', gitHubCache)
-    .factory('debounce', debounce);
+    .factory('throttle', throttle);
