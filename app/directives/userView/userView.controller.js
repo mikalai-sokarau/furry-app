@@ -40,7 +40,7 @@ export default function($scope, $stateParams, gitHubMessager, throttle) {
             gitHubMessager
                 .loadMoreRepositories($stateParams.name, nextPageToLoad++)
                 .then(res => {
-                    if (!res.data.length) window.onscroll = null;
+                    if (res.data.length < 20) window.onscroll = null;
                     this.repositoriesList.push(...res.data);
                     this.isContentLoading = false;
                 });
