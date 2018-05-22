@@ -19,10 +19,26 @@ body {
   .search-results-content {
     display: flex;
     flex-direction: row;
-    flex: 1 0 auto;
 
     ui-view {
       width: 100%;
+
+      .welcome {
+        text-shadow: 0px 15px 5px rgba(0, 0, 0, 0.1),
+                     10px 20px 5px rgba(0, 0, 0, 0.05), 
+                     -10px 20px 5px rgba(0, 0, 0, 0.05);
+        font-size: 50px;
+        text-align: center;
+        margin-top: 70px;
+
+        p {
+          margin: 0;
+        }
+
+        span {
+          font-size: 20px;
+        }
+      }
     }
   }
 }
@@ -45,8 +61,8 @@ header {
 //   flex: 1 0 auto;
 // }
 
-footer {
-  flex: 0 0 auto;
-  text-align: center;
-  background-color: lightgray;
-}
+// footer {
+//   flex: 0 0 auto;
+//   text-align: center;
+//   background-color: lightgray;
+// }

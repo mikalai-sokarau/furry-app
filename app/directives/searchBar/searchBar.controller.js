@@ -1,17 +1,23 @@
-export default function($state, $stateParams) {
+export default function($state, $stateParams, $transitions) {
     this.searchText = '';
     this.search = () => {
         const urlSearchText = $stateParams.text;
         const newCategoryType =
-            $state.current.name !== 'hello'
-                ? $stateParams.type
-                : 'repositories';
+            $state.current.name === 'hello'
+                ? 'repositories'
+                : $stateParams.type || $stateParams.name;
 
+        const newCategoryName = 
+            $state.current.name === 'hello'
+                ? 'search.categories'
+                : $state.current.name;                
+        
         if (urlSearchText !== this.searchText) {
-            $state.go('search.categories', {
+            $state.go(newCategoryName, {
                 type: newCategoryType,
                 text: this.searchText,
-                page: 1
+                page: 1,
+                name: this.searchText
             });
         } else {
             /* 
@@ -20,4 +26,8 @@ export default function($state, $stateParams) {
             */
         }
     };
+
+    $transitions.onSuccess({}, () => {
+        this.searchText = $stateParams.text || $stateParams.name;
+    });
 }

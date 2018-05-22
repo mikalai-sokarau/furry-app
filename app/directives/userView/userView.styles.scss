@@ -48,3 +48,13 @@
     height: 50px;
   }
 }
+
+.user-view-error-message {
+  p {
+    text-shadow: 0px 15px 5px rgba(0, 0, 0, 0.1),
+      10px 20px 5px rgba(0, 0, 0, 0.05), -10px 20px 5px rgba(0, 0, 0, 0.05);
+    font-size: 20px;
+    text-align: center;
+    margin-top: 70px;
+  }
+}

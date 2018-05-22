@@ -6,18 +6,25 @@ export default function($scope, $stateParams, gitHubMessager, debounce) {
     this.starsCount = 0;
     this.repositoriesList = [];
     this.isContentLoading = true;
+    this.isError = false;
 
     let nextPageToLoad = 2;
-    
-    gitHubMessager.getUser($stateParams.name).then(res => {
-        this.userName = res.data.login;
-        this.avatarUrl = res.data.avatar_url;
-        this.followers = res.data.followers;
-        this.following = res.data.following;
-        this.starsCount = res.starred.length;
-        this.repositoriesList = res.repos;
-        this.isContentLoading = false;
-    });
+
+    gitHubMessager
+        .getUser($stateParams.name)
+        .then(res => {
+            this.userName = res.data.login;
+            this.avatarUrl = res.data.avatar_url;
+            this.followers = res.data.followers;
+            this.following = res.data.following;
+            this.starsCount = res.starred.length;
+            this.repositoriesList = res.repos;
+            this.isContentLoading = false;
+        })
+        .catch(() => {
+            this.isContentLoading = false;
+            this.isError = true;
+        });
 
     const loadMoreRepositoriesFromGitHub = debounce(() => {
         const fullHeight = document.body.scrollHeight;
@@ -39,5 +46,4 @@ export default function($scope, $stateParams, gitHubMessager, debounce) {
     }, 300);
 
     window.onscroll = () => loadMoreRepositoriesFromGitHub();
-
 }

@@ -23,4 +23,7 @@
     <div class="loader-wrapper" ng-show="UserViewController.isContentLoading">
         <img src="../../images/loader.gif" />
     </div>
+    <div class="user-view-error-message" ng-if="UserViewController.isError">
+        <p>Nothing interesting was found by your request, try to find something else <3</p>
+    </div>
 </section>

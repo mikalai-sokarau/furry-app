@@ -32,10 +32,10 @@ export default function($http, $q, gitHubCache) {
         };
 
         if (cachedValue) {
-            let lng = cachedValue.repos.length;
-            cachedValue.repos.length = lng > resultsPerPage 
+            const length = cachedValue.repos.length;
+            cachedValue.repos.length = length > resultsPerPage 
                 ? resultsPerPage
-                : lng;
+                : length;
         }
 
         return cachedValue
@@ -49,10 +49,7 @@ export default function($http, $q, gitHubCache) {
                         .get(`${path}/starred`, DEFAULT_HEADERS)
                         .then(res => (userData.starred = res.data)),
                     $http
-                        .get(
-                            `${path}/repos?page=1&per_page=${resultsPerPage}`,
-                            DEFAULT_HEADERS
-                        )
+                        .get(`${path}/repos?page=1&per_page=${resultsPerPage}`, DEFAULT_HEADERS)
                         .then(res => (userData.repos = res.data))
                 ])
                 .then(() => {

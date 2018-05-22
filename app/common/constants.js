@@ -30,34 +30,6 @@ const STATES = [
             text: null
         }
     },
-    
-    // {
-    //     name: 'search.repositories',
-    //     url: '/repositories?text&page',
-    //     component: 'searchResultsList',
-    //     params: {
-    //         page: null,
-    //         text: null
-    //     }
-    // },
-    // {
-    //     name: 'search.issues',
-    //     url: '/issues?text&page',
-    //     component: 'searchResultsList',
-    //     params: {
-    //         page: null,
-    //         text: null
-    //     }
-    // },
-    // {
-    //     name: 'search.users',
-    //     url: '/users?text&page',
-    //     component: 'searchResultsList',
-    //     params: {
-    //         page: null,
-    //         text: null
-    //     }
-    // }
 ];
 
 export { GITHUB_TOKEN, SEARCH_CATEGORIES, STATES };
