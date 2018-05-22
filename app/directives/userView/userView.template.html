@@ -1,9 +1,10 @@
 <section>
+    <input class="user-back-btn" ng-click="UserViewController.goBack()" type="button" value="← back">
     <div class="user-content-wrapper" ng-show="UserViewController.userName">
         <div class="user-info">
             <figure>
                 <div class="user-image-container">
-                    <img src="{{UserViewController.avatarUrl}}" />
+                    <a href="{{UserViewController.profileUrl}}"><img src="{{UserViewController.avatarUrl}}" /></a>
                 </div>
                 <figcaption>{{::UserViewController.userName}}</figcaption>
             </figure>

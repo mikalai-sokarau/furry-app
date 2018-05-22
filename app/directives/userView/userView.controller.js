@@ -1,5 +1,6 @@
 export default function($scope, $stateParams, gitHubMessager, throttle) {
     this.userName = '';
+    this.profileUrl = '';
     this.avatarUrl = '';
     this.followers = 0;
     this.following = 0;
@@ -7,13 +8,15 @@ export default function($scope, $stateParams, gitHubMessager, throttle) {
     this.repositoriesList = [];
     this.isContentLoading = true;
     this.isError = false;
-
+    this.goBack = () => window.history.back();
+    
     let nextPageToLoad = 2;
 
     gitHubMessager
         .getUser($stateParams.name)
         .then(res => {
             this.userName = res.data.login;
+            this.profileUrl = res.data.html_url;
             this.avatarUrl = res.data.avatar_url;
             this.followers = res.data.followers;
             this.following = res.data.following;
