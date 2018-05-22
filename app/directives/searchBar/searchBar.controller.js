@@ -28,7 +28,6 @@ export default function($state, $stateParams, $transitions) {
     };
 
     $transitions.onSuccess({}, () => {
-        this.isFirstPage = window.history.length <= 2;
         this.searchText = $stateParams.text || $stateParams.name;
     });
 }
