@@ -1,4 +1,4 @@
-export default function($scope, $stateParams, gitHubMessager, throttle) {
+export default function($scope, $stateParams, gitHubMessager, utils) {
     this.userName = '';
     this.profileUrl = '';
     this.avatarUrl = '';
@@ -29,7 +29,7 @@ export default function($scope, $stateParams, gitHubMessager, throttle) {
             this.isError = true;
         });
 
-    window.onscroll = throttle(() => {
+    window.onscroll = utils.throttle(() => {
         const fullHeight = document.body.scrollHeight;
         const windowInnerHeight = window.innerHeight;
         const scrolledHeight = window.pageYOffset;
@@ -42,6 +42,8 @@ export default function($scope, $stateParams, gitHubMessager, throttle) {
                 .then(res => {
                     if (res.data.length < 20) window.onscroll = null;
                     this.repositoriesList.push(...res.data);
+                    this.isContentLoading = false;
+                }, () => {
                     this.isContentLoading = false;
                 });
         }

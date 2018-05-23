@@ -1,11 +1,7 @@
 import { GITHUB_TOKEN } from '../../common/constants';
 
 export default function($http, $q, gitHubCache) {
-    const DEFAULT_HEADERS = {
-        headers: {
-            Authorization: GITHUB_TOKEN
-        }
-    };
+    $http.defaults.headers.common.Authorization = GITHUB_TOKEN;
 
     function getData(params) {
         const path = `https://api.github.com/search/${params.type}?q=${
@@ -15,7 +11,7 @@ export default function($http, $q, gitHubCache) {
 
         return cachedValue
             ? $q.when(cachedValue)
-            : $http.get(path, DEFAULT_HEADERS).then(res => {
+            : $http.get(path).then(res => {
                 gitHubCache.put(path, res);
                 return $q.when(res);
             });
@@ -43,13 +39,13 @@ export default function($http, $q, gitHubCache) {
             : $q
                 .all([
                     $http
-                        .get(path, DEFAULT_HEADERS)
+                        .get(path)
                         .then(res => (userData.data = res.data)),
                     $http
-                        .get(`${path}/starred`, DEFAULT_HEADERS)
+                        .get(`${path}/starred`)
                         .then(res => (userData.starred = res.data)),
                     $http
-                        .get(`${path}/repos?page=1&per_page=${resultsPerPage}`, DEFAULT_HEADERS)
+                        .get(`${path}/repos?page=1&per_page=${resultsPerPage}`)
                         .then(res => (userData.repos = res.data))
                 ])
                 .then(() => {
@@ -64,7 +60,7 @@ export default function($http, $q, gitHubCache) {
 
         return cachedValue
             ? $q.when(cachedValue)
-            : $http.get(path, DEFAULT_HEADERS).then(res => {
+            : $http.get(path).then(res => {
                 gitHubCache.put(path, res);
                 return $q.when(res);
             });

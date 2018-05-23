@@ -3,16 +3,15 @@ import '@uirouter/angularjs';
 
 import { STATES } from './common/constants';
 
-import searchBar from './directives/searchBar/searchBar.directive';
 import mainView from './directives/mainView/mainView.directive';
-import searchResultsList from './directives/searchResultsList/searchResultsList.directive';
-import resultItem from './directives/resultItem/resultItem.directive';
-import userView from './directives/userView/userView.directive';
+import searchBar from './directives/searchBar/searchBar.directive';
 import searchCategories from './directives/searchCategories/searchCategories.directive';
+import searchResultsList from './directives/searchResultsList/searchResultsList.directive';
+import userView from './directives/userView/userView.directive';
 
-import gitHubMessager from './services/gitHubMessager/gitHubMessager.service';
 import gitHubCache from './services/gitHubCache/gitHubCache.service';
-import throttle from './services/throttle/throttle.service';
+import gitHubMessager from './services/gitHubMessager/gitHubMessager.service';
+import utils from './services/utils/utils.service';
 
 angular.module('furry-app', ['ui.router'])
     .config(function ($stateProvider, $urlRouterProvider) {
@@ -20,13 +19,12 @@ angular.module('furry-app', ['ui.router'])
         $urlRouterProvider.otherwise('/hello');
     })
 
-    .directive('searchBar', searchBar)
     .directive('mainView', mainView)
-    .directive('searchResultsList', searchResultsList)
-    .directive('resultItem', resultItem)
-    .directive('userView', userView)
+    .directive('searchBar', searchBar)
     .directive('searchCategories', searchCategories)
+    .directive('searchResultsList', searchResultsList)
+    .directive('userView', userView)
 
-    .factory('gitHubMessager', gitHubMessager)
     .factory('gitHubCache', gitHubCache)
-    .factory('throttle', throttle);
+    .factory('gitHubMessager', gitHubMessager)
+    .factory('utils', utils);

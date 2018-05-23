@@ -23,12 +23,7 @@ const STATES = [
     {
         name: 'search.categories',
         url: '/categories?type&text&page',
-        component: 'searchResultsList',
-        params: {
-            type: null,       
-            page: null,
-            text: null
-        }
+        component: 'searchResultsList'
     },
 ];
 
