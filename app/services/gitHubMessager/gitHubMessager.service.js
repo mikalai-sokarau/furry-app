@@ -67,8 +67,8 @@ export default function($http, $q, gitHubCache) {
     }
 
     return {
-        getData: params => getData(params),
-        getUser: name => getUser(name),
-        loadMoreRepositories: (name, page) => loadMoreRepositories(name, page)
+        getData,
+        getUser,
+        loadMoreRepositories
     };
 }
