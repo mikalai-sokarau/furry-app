@@ -20,11 +20,11 @@ angular
     $urlRouterProvider.otherwise('/hello');
   })
 
-  .directive('mainView', mainView)
-  .directive('searchBar', searchBar)
-  .directive('searchCategories', searchCategories)
-  .directive('searchResultsList', searchResultsList)
-  .directive('userView', userView)
+  .component('mainView', mainView)
+  .component('searchBar', searchBar)
+  .component('searchCategories', searchCategories)
+  .component('searchResultsList', searchResultsList) 
+  .component('userView', userView)
 
   .factory('gitHubCache', gitHubCache)
   .factory('gitHubMessager', gitHubMessager)
