@@ -1,7 +1,9 @@
 import { SEARCH_CATEGORIES } from '../../common/constants';
-export default function($state, $stateParams) {
+
+export default function($state: any, $stateParams: any) {
     this.categories = SEARCH_CATEGORIES;
-    this.changeCategory = category => {
+
+    this.changeCategory = (category: string) => {
         $state.go('search.categories', {
             type: category,
             text: $stateParams.text,
@@ -9,4 +11,3 @@ export default function($state, $stateParams) {
         });
     };
 }
-//# sourceMappingURL=searchCategories.controller.js.map

@@ -1,6 +1,7 @@
 import searchResultsListCtrl from './searchResultsList.controller';
 import searchResultsListTemplate from './searchResultsList.template.html';
 import './searchResultsList.styles.scss';
+
 export default function () {
     return {
         restrict: 'E',
@@ -10,4 +11,3 @@ export default function () {
         controllerAs: 'SearchResultsListCtrl'
     };
 }
-//# sourceMappingURL=searchResultsList.directive.js.map

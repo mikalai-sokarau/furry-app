@@ -1,7 +1,8 @@
 import searchBarTemplate from './searchBar.template.html';
 import searchBarCtrl from './searchBar.controller';
 import './searchBar.styles.scss';
-export default function () {
+
+export default function() {
     return {
         restrict: 'E',
         scope: {},
@@ -10,4 +11,3 @@ export default function () {
         controllerAs: 'SearchBarCtrl'
     };
 }
-//# sourceMappingURL=searchBar.directive.js.map

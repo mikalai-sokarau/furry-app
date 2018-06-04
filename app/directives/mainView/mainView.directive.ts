@@ -1,6 +1,7 @@
 import mainViewTemplate from './mainView.template.html';
 import mainViewCtrl from './mainView.controller';
 import './mainView.styles.scss';
+
 export default function () {
     return {
         restrict: 'E',
@@ -10,4 +11,3 @@ export default function () {
         controllerAs: 'MainViewCtrl'
     };
 }
-//# sourceMappingURL=mainView.directive.js.map

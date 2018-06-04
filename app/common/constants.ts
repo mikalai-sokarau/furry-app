@@ -15,7 +15,7 @@ const STATES = [
         url: '/user/:name',
         component: 'userView'
     },
-    {
+    {   
         name: 'search',
         url: '/search',
         component: 'mainView',
@@ -26,5 +26,5 @@ const STATES = [
         component: 'searchResultsList'
     },
 ];
+
 export { GITHUB_TOKEN, SEARCH_CATEGORIES, STATES };
-//# sourceMappingURL=constants.js.map

@@ -1,0 +1,1 @@
+{"version":3,"file":"mainView.directive.js","sourceRoot":"","sources":["mainView.directive.ts"],"names":[],"mappings":"AAAA,OAAO,gBAAgB,MAAM,0BAA0B,CAAC;AACxD,OAAO,YAAY,MAAM,uBAAuB,CAAC;AACjD,OAAO,wBAAwB,CAAC;AAEhC,MAAM,CAAC,OAAO;IACV,OAAO;QACH,QAAQ,EAAE,GAAG;QACb,KAAK,EAAE,EAAE;QACT,WAAW,EAAE,gBAAgB;QAC7B,UAAU,EAAE,YAAY;QACxB,YAAY,EAAE,cAAc;KAC/B,CAAC;AACN,CAAC"}

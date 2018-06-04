@@ -1,6 +1,7 @@
 import searchCategoriesTemplate from './searchCategories.template.html';
 import searchCategoriesCtrl from './searchCategories.controller';
 import './searchCategories.styles.scss';
+
 export default function () {
     return {
         restrict: 'E',
@@ -10,4 +11,3 @@ export default function () {
         controllerAs: 'SearchCategoriesCtrl'
     };
 }
-//# sourceMappingURL=searchCategories.directive.js.map

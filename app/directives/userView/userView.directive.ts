@@ -1,6 +1,7 @@
 import userViewController from './userView.controller';
 import userViewTemplate from './userView.template.html';
 import './userView.styles.scss';
+
 export default function () {
     return {
         restrict: 'E',
@@ -10,4 +11,3 @@ export default function () {
         controllerAs: 'UserViewController'
     };
 }
-//# sourceMappingURL=userView.directive.js.map
