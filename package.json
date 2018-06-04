@@ -2,7 +2,7 @@
   "name": "furry-app",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "index.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack-dev-server --open",
@@ -13,7 +13,10 @@
   },
   "author": "Mikalai Sokarau",
   "license": "ISC",
-  "eslintIgnore": ["bundle.js", "webpack.config.js"],
+  "eslintIgnore": [
+    "bundle.js",
+    "webpack.config.js"
+  ],
   "devDependencies": {
     "css-loader": "^0.28.11",
     "eslint": "^4.19.1",
@@ -30,6 +33,19 @@
   },
   "dependencies": {
     "@uirouter/angularjs": "^1.0.16",
-    "angular": "^1.6.10"
+    "angular": "^1.6.10",
+    "@angular/common": "^5.2.5",
+    "@angular/compiler": "^5.2.5",
+    "@angular/core": "^5.2.5",
+    "@angular/forms": "^5.2.5",
+    "@angular/platform-browser": "^5.2.5",
+    "@angular/platform-browser-dynamic": "^5.2.5",
+    "@angular/router": "^5.2.5",
+    "@angular/upgrade": "^5.2.5",
+    "angular-route": "1.6.6",
+    "core-js": "^2.5.3",
+    "reflect-metadata": "^0.1.12",
+    "rxjs": "^5.5.6",
+    "zone.js": "^0.8.20"
   }
 }
