@@ -5,6 +5,7 @@ export default class {
   static $inject = ['$state', '$stateParams', '$transitions'];
 
   constructor($state: any, $stateParams: any, $transitions: any) {
+    
     this.searchText = '';
     this.search = (): void => {
       const urlSearchText = $stateParams.text;
@@ -27,9 +28,9 @@ export default class {
         });
       } else {
         /* 
-                        do nothing, search textes are equal, 
-                        it is no reason to send one more request. 
-                        */
+          do nothing, search textes are equal,
+          it is no reason to send one more request.
+        */
       }
     };
 

@@ -1,10 +1,10 @@
 import userViewController from './userView.controller';
 import userViewTemplate from './userView.template.html';
 import './userView.styles.scss';
-console.log(userViewTemplate);
 export default {
-    restrict: 'E',
-    scope: {},
+    // restrict: 'E',
+    // scope: {},
+    // template: '<p>userView</p>',
     templateUrl: userViewTemplate,
     controller: userViewController,
     controllerAs: 'UserViewController'

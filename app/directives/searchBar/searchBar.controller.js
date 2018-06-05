@@ -2,6 +2,7 @@ export default class default_1 {
     constructor($state, $stateParams, $transitions) {
         this.searchText = '';
         this.search = () => {
+            console.log('here');
             const urlSearchText = $stateParams.text;
             const newCategoryType = $state.current.name === 'hello'
                 ? 'repositories'
@@ -19,9 +20,9 @@ export default class default_1 {
             }
             else {
                 /*
-                                do nothing, search textes are equal,
-                                it is no reason to send one more request.
-                                */
+                  do nothing, search textes are equal,
+                  it is no reason to send one more request.
+                */
             }
         };
         $transitions.onSuccess({}, () => {

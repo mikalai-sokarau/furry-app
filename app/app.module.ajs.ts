@@ -1,5 +1,8 @@
-import angular from 'angular';
-import '@uirouter/angularjs';
+import * as angular from 'angular';
+// import '@uirouter/angularjs';
+import '@uirouter/angular-hybrid';
+import { UIRouter, UrlService } from '@uirouter/core';
+
 
 import { STATES } from './common/constants';
 
@@ -13,19 +16,28 @@ import gitHubCache from './services/gitHubCache/gitHubCache.service';
 import gitHubMessager from './services/gitHubMessager/gitHubMessager.service';
 import utils from './services/utils/utils.service';
 
+const MODULE_NAME = 'furry-app';
+
 angular
-  .module('furry-app', ['ui.router'])
+  .module(MODULE_NAME, ['ui.router.upgrade'])
   .config(function($stateProvider: any, $urlRouterProvider: any) {
     STATES.forEach(state => $stateProvider.state(state));
     $urlRouterProvider.otherwise('/hello');
   })
-
+  
   .component('mainView', mainView)
   .component('searchBar', searchBar)
   .component('searchCategories', searchCategories)
-  .component('searchResultsList', searchResultsList) 
+  .component('searchResultsList', searchResultsList)
   .component('userView', userView)
 
-  .factory('gitHubCache', gitHubCache)
-  .factory('gitHubMessager', gitHubMessager)
-  .factory('utils', utils);
+  .service('gitHubCache', gitHubCache)
+  .service('gitHubMessager', gitHubMessager)
+  .service('utils', utils);
+
+// angular.bootstrap(document.body, [MODULE_NAME]); 
+angular.element(function() {
+  angular.bootstrap(document, [MODULE_NAME]);
+});
+
+export default MODULE_NAME;

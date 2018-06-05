@@ -8,6 +8,7 @@
       "experimentalDecorators": true,
       "lib": [ "es6", "dom" ],
       "noImplicitAny": true,
-      "suppressImplicitAnyIndexErrors": true
+      "suppressImplicitAnyIndexErrors": true,
+      "outDir": "build"
     }
   }
