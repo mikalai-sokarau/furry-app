@@ -22,11 +22,15 @@ module.exports = {
             },
             {
                 test: /\.html$/,
-                loader:
-                    'ngtemplate-loader?relativeTo=' +
-                    path.resolve(__dirname, './app') +
-                    '/!html-loader'
+                use: 'raw-loader'
             },
+            // {
+            //     test: /\.html$/,
+            //     loader:
+            //         'ngtemplate-loader?relativeTo=' +
+            //         path.resolve(__dirname, './app') +
+            //         '/!html-loader'
+            // },
             {
                 test: /\.scss$/,
                 use: [
@@ -58,6 +62,6 @@ module.exports = {
         ]
     },
     resolve: {
-      extensions: ['.ts', '.js' ]
-    },
+        extensions: ['.ts', '.js']
+    }
 };
