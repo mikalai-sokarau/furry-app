@@ -1,1 +1,0 @@
-{"version":3,"file":"searchResultsList.directive.js","sourceRoot":"","sources":["searchResultsList.directive.ts"],"names":[],"mappings":"AAAA,OAAO,qBAAqB,MAAM,gCAAgC,CAAC;AACnE,OAAO,yBAAyB,MAAM,mCAAmC,CAAC;AAC1E,OAAO,iCAAiC,CAAC;AAEzC,eAAe;IACb,QAAQ,EAAE,GAAG;IACb,KAAK,EAAE,EAAE;IACT,WAAW,EAAE,yBAAyB;IACtC,UAAU,EAAE,qBAAqB;IACjC,YAAY,EAAE,uBAAuB;CACtC,CAAC"}

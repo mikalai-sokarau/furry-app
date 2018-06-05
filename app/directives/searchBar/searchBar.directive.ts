@@ -6,7 +6,7 @@ const searchBarTemplate = `<header>
 <div class="search">
     <div class="icon-container">
         <a href='/'>
-            <img src="../../images/icon.png">
+            <img src="../app/images/icon.png">
         </a>
     </div>
     <form ng-submit="SearchBarCtrl.search()">
