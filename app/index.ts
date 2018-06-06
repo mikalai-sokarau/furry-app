@@ -23,9 +23,11 @@ angular
   .component('mainView', mainView)
   .component('searchBar', searchBar)
   .component('searchCategories', searchCategories)
-  .component('searchResultsList', searchResultsList) 
+  .component('searchResultsList', searchResultsList)
   .component('userView', userView)
 
   .factory('gitHubCache', gitHubCache)
   .factory('gitHubMessager', gitHubMessager)
   .factory('utils', utils);
+
+angular.bootstrap(document.documentElement, ['furry-app']);
