@@ -1,4 +1,3 @@
-import * as angular from 'angular';
 import '@uirouter/angularjs';
 
 import { STATES } from './common/constants';
@@ -13,8 +12,12 @@ import gitHubCache from './services/gitHubCache/gitHubCache.service';
 import gitHubMessager from './services/gitHubMessager/gitHubMessager.service';
 import utils from './services/utils/utils.service';
 
+import * as angular from 'angular';
+
+const appName = 'furry-app';
+
 angular
-  .module('furry-app', ['ui.router'])
+  .module(appName, ['ui.router'])
   .config(function($stateProvider: any, $urlRouterProvider: any) {
     STATES.forEach(state => $stateProvider.state(state));
     $urlRouterProvider.otherwise('/hello');
@@ -30,4 +33,4 @@ angular
   .factory('gitHubMessager', gitHubMessager)
   .factory('utils', utils);
 
-angular.bootstrap(document.documentElement, ['furry-app']);
+export default appName;
