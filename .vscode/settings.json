@@ -1,4 +1,4 @@
 {
   "prettier.singleQuote": true,
-  "files.eol": "\n"
+  "files.eol": "\r\n"
 }

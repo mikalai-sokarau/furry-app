@@ -1,4 +1,7 @@
+import * as angular from 'angular';
 import '@uirouter/angularjs';
+import { downgradeInjectable } from '@angular/upgrade/static';
+
 
 import { STATES } from './common/constants';
 
@@ -9,10 +12,11 @@ import searchResultsList from './directives/searchResultsList/searchResultsList.
 import userView from './directives/userView/userView.directive';
 
 import gitHubCache from './services/gitHubCache/gitHubCache.service';
-import gitHubMessager from './services/gitHubMessager/gitHubMessager.service';
+// import { GitHubMessager } from './services/gitHubMessager/gitHubMessager.service';
+import { GitHubMessager } from './services/gitHubMessager/GitHubMessager.ng2.service';
 import utils from './services/utils/utils.service';
 
-import * as angular from 'angular';
+
 
 const appName = 'furry-app';
 
@@ -29,8 +33,15 @@ angular
   .component('searchResultsList', searchResultsList)
   .component('userView', userView)
 
-  .factory('gitHubCache', gitHubCache)
-  .factory('gitHubMessager', gitHubMessager)
-  .factory('utils', utils);
+  .service('gitHubCache', gitHubCache)
+  /*
+    next two services are interchangeable,
+    * commented one written in pure JS
+    * uncommented one is ready to use, working Angular2 service written in TS, 
+      but downgraded to use in AngularJS
+  */
+  // .service('gitHubMessager', GitHubMessager)
+  .service('gitHubMessager', downgradeInjectable(GitHubMessager))
+  .service('utils', utils);
 
 export default appName;

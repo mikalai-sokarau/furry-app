@@ -1,6 +1,9 @@
 import { GITHUB_TOKEN } from '../../common/constants';
 
-export default class {
+/*
+    Service bellow written in TS and addapted to migration to Angular2.
+*/
+export class GitHubMessager {
   http: any;
   q: any;
   gitHubCache: any;
@@ -74,6 +77,10 @@ export default class {
         });
   }
 }
+
+/*
+    Commented code below is the same angularJS service, written in pure JS.
+*/
 
 // export default function($http: any, $q: any, gitHubCache: any) {
 //   $http.defaults.headers.common.Authorization = GITHUB_TOKEN;
