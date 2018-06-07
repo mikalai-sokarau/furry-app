@@ -1,13 +1,13 @@
 import * as angular from 'angular';
 import '@uirouter/angularjs';
-import { downgradeInjectable } from '@angular/upgrade/static';
-
+import { downgradeInjectable, downgradeComponent } from '@angular/upgrade/static';
 
 import { STATES } from './common/constants';
 
 import mainView from './directives/mainView/mainView.directive';
 import searchBar from './directives/searchBar/searchBar.directive';
-import searchCategories from './directives/searchCategories/searchCategories.directive';
+// import SearchCategories from './directives/searchCategories/searchCategories.directive';
+import { SearchCategories } from './directives/searchCategories/searchCategoriesNg2/searchCategories.component.ng2';
 import searchResultsList from './directives/searchResultsList/searchResultsList.directive';
 import userView from './directives/userView/userView.directive';
 
@@ -29,14 +29,21 @@ angular
 
   .component('mainView', mainView)
   .component('searchBar', searchBar)
-  .component('searchCategories', searchCategories)
+  /*
+    next two components are interchangeable,
+    * commented one is written in pure JS
+    * uncommented one is ready to use, working Angular2 component written in TS, 
+      but downgraded to use in AngularJS
+  */
+  // .component('searchCategories', SearchCategories)
+  .directive('searchCategories', downgradeComponent({component: SearchCategories}))
   .component('searchResultsList', searchResultsList)
   .component('userView', userView)
 
   .service('gitHubCache', gitHubCache)
   /*
     next two services are interchangeable,
-    * commented one written in pure JS
+    * commented one is written in pure JS
     * uncommented one is ready to use, working Angular2 service written in TS, 
       but downgraded to use in AngularJS
   */

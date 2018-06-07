@@ -1,0 +1,11 @@
+<aside>
+    <ul>
+        <li 
+          *ngFor="let categoryName of categories" 
+          (click)="changeCategory(categoryName)"
+          ui-sref-active="active">
+            {{categoryName}}
+        </li>
+    </ul>
+  </aside>
+  

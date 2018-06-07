@@ -9,11 +9,13 @@ import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { setAngularLib } from '@angular/upgrade/static';
 
 import { GitHubMessager } from './services/gitHubMessager/GitHubMessager.ng2.service';
-// import gitHubCache from './services/gitHubCache/gitHubCache.service';
+import { SearchCategories } from './directives/searchCategories/searchCategoriesNg2/searchCategories.component.ng2';
 import appName from './index';
 
 @NgModule({
   imports: [BrowserModule, UpgradeModule],
+  declarations: [SearchCategories],
+  entryComponents: [SearchCategories],
   providers: [
     GitHubMessager,
     {
@@ -24,6 +26,16 @@ import appName from './index';
     {
       provide: '$q',
       useFactory: ($injector: any) => $injector.get('$q'),
+      deps: ['$injector']
+    },
+    {
+      provide: '$state',
+      useFactory: ($injector: any) => $injector.get('$state'),
+      deps: ['$injector']
+    },
+    {
+      provide: '$stateParams',
+      useFactory: ($injector: any) => $injector.get('$stateParams'),
       deps: ['$injector']
     },
     {
