@@ -16,8 +16,6 @@ import gitHubCache from './services/gitHubCache/gitHubCache.service';
 import { GitHubMessager } from './services/gitHubMessager/GitHubMessager.ng2.service';
 import utils from './services/utils/utils.service';
 
-
-
 const appName = 'furry-app';
 
 angular

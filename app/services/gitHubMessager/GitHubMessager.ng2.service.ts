@@ -10,8 +10,6 @@ export class GitHubMessager {
   q: any;
   gitHubCache: any;
 
-  static $inject = ['$http', '$q', 'gitHubCache'];
-
   constructor(
     @Inject('$http') $http: any,
     @Inject('$q') $q: any,

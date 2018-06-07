@@ -2,17 +2,16 @@ import { Component } from '@angular/core';
 import { Inject } from '@angular/core';
 import { SEARCH_CATEGORIES } from '../../../common/constants';
 import searchCategoriesTemplate from './searchCategories.template.ng2.html';
+import '../searchCategories.styles.scss';
 
 @Component({
   selector: 'search-bar',
-  template: searchCategoriesTemplate
+  template: searchCategoriesTemplate,
 })
 export class SearchCategories {
   categories: string[];
   state: any;
   stateParams: any;
-
-  static inject = ['$state', '$stateParams'];
 
   constructor(
     @Inject('$state') $state: any,
